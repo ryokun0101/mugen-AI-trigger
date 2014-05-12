@@ -378,6 +378,7 @@ length = 5
 ;---------------------------------------------------------
 [State -3]
 type = VarSet
+triggerall = 0
 triggerall = var(59) = 0
 triggerall = RoundState = [1,2]
 trigger1 = Command = "AI0"
@@ -440,6 +441,7 @@ Value = 1
 [State -1,Guard]
 type = ChangeState
 value = 130
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = var(58) > 1  
 triggerall = enemy,time > 5-var(58) ;’´”½‰ƒK[ƒh 0F`4F
@@ -467,6 +469,7 @@ trigger5   = Random < 500
 [State -1,Guard]
 type = ChangeState
 value = 131
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = var(58) > 1   
 triggerall = enemy,time > 5-var(58) ;’´”½‰ƒK[ƒh 0F`4F
@@ -486,6 +489,7 @@ trigger3   = Random > 300
 [State -1,Guard]
 type = ChangeState
 value = 132
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = var(58) > 1   
 triggerall = enemy,time > 5-var(58) ;’´”½‰ƒK[ƒh 0F`4F
@@ -504,6 +508,7 @@ trigger2   = enemy, numproj >= 1
 [State -1];—ôÕ‘“”jn(ƒtƒBƒjƒbƒVƒ…)
 type = ChangeState
 value = 2000
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -521,6 +526,7 @@ trigger2 = MoveContact
 [State -1];‹ó”jâ¶Œ‚(ƒtƒBƒjƒbƒVƒ…)
 type = ChangeState
 value = 2100
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -541,6 +547,7 @@ trigger2 = MoveContact
 [State -1];‹•‹óE˜@‰Ø(’ÇŒ‚)
 type = ChangeState
 value = 1060
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -553,6 +560,7 @@ trigger1 = MoveContact
 [State -1];‰A—zE–‚Œ(’ÇŒ‚)
 type = ChangeState
 value = 1400
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -565,6 +573,7 @@ trigger1 = MoveContact
 [State -1];a•—‰”jEE–‚(ƒJƒEƒ“ƒ^[)
 type = ChangeState
 value = 1250
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = power >= 1500
@@ -585,6 +594,7 @@ trigger2 = p2bodydist X < 99
 [State -1];a•—‰”jE”¾‹¾(‘Î‹ó)
 type = ChangeState
 value = 1200
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = power >= 1000
@@ -602,6 +612,7 @@ trigger1 = p2movetype != H
 [State -1];a•—‰”jEâ‰e
 type = ChangeState
 value = 1500
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = power >= 1000
@@ -619,6 +630,7 @@ trigger2 = movecontact
 [State -1];‚Ó‚Á‚Æ‚Î‚µ
 type = ChangeState
 value = 810
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = power <= 1000
@@ -634,6 +646,7 @@ trigger1 = time > 12
 [State -1, Jump Cancel]
 type = ChangeState
 value = 40
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -646,6 +659,7 @@ trigger1 = movecontact
 [State -1];‹•‹óEè…–‚
 type = ChangeState
 value = 1115
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = power >= 1500
@@ -663,6 +677,7 @@ trigger1 = p2statetype != A
 [State -1];‹•‹óEg˜@
 type = ChangeState
 value = 1150
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = power <= 1500
@@ -681,6 +696,7 @@ trigger1 = p2statetype != A
 [State -1];‹•‹ó(“ËŒ‚—p+‰ñ”ğ)
 type = ChangeState
 value = 1105
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -703,6 +719,7 @@ trigger2 = p2bodydist X < 65
 [State -1];‹•‹ó•Ç
 type = ChangeState
 value = 800
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -721,6 +738,7 @@ trigger1 = p2bodydist X < 65
 [State -1];—§‚¿‹­UŒ‚
 type = ChangeState
 value = 230
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = p2statetype != L
@@ -734,6 +752,7 @@ trigger1 = MoveContact
 [State -1];—§‚¿ãUŒ‚
 type = ChangeState
 value = 220
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = p2statetype != L
@@ -748,6 +767,7 @@ trigger1 = p2movetype != A
 [State -1];‚µ‚á‚ª‚İ‹­UŒ‚
 type = ChangeState
 value = 430
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = Alive
@@ -761,6 +781,7 @@ trigger1 = MoveContact
 [State -1];‹ó’†ãUŒ‚
 type = ChangeState
 value = 630
+triggerall = 0
 triggerall = var(59) = 1
 triggerall = RoundState = 2
 triggerall = p2statetype != L

@@ -527,8 +527,20 @@ time = 1
 [Statedef -1]
 
 ;==============================================================================
+;SENTI
+[State -1, ai force]
+type = VarSet
+trigger1 = 1
+var(59) = 1
 
-
+[State -1, ai force]
+type = ChangeState
+value = 1105
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101])
+trigger1 = p2dist X < 100
+;SENTI
 ;==============================================================================
 
 ;==============================================================================
@@ -536,7 +548,8 @@ time = 1
 ;ƒ_ƒbƒVƒ…
 [State -1, Dash]
 type = ChangeState
-value = 100
+value = 100 ;SENTI
+triggerall = var(59) = 0
 trigger1 = command = "FF"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -544,7 +557,8 @@ trigger1 = ctrl
 ;ƒoƒbƒNƒXƒeƒbƒv
 [State -1, Back Step]
 type = ChangeState
-value = 105
+value = 105 ;SENTI
+triggerall = var(59) = 0
 trigger1 = command = "BB"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -554,7 +568,7 @@ trigger1 = ctrl
 ;==============================================================================
 [State -1];‰¹‘ƒ’Ã—¬Œ‰A—zƒmŒ^‰œ‹`E‹ã”ö
 type = ChangeState
-value = 4000
+value = 4000	;SENTI counter slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "‰¹‘ƒ’Ã—¬Œ‰A—zƒmŒ^‰œ‹`E‹ã”ö"
@@ -570,7 +584,7 @@ trigger2 = StateNo = 40
 ;==============================================================================
 [State -1];‹•‹ó¥—…™‹
 type = ChangeState
-value = 3500
+value = 3500	;SENTI misogi
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "‹•‹ó¥—…™‹"
@@ -591,7 +605,7 @@ trigger4 = movecontact
 ;==============================================================================
 [State -1];‰A—z¥—z‰Š
 type = ChangeState
-value = 3100
+value = 3100	;SENTI freeman slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "‰A—z¥—z‰Š"
@@ -608,7 +622,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jEŽ¾•—
 type = ChangeState
-value = 3000
+value = 3000	;SENTI zero sanslash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "Ža•—‰”jEŽ¾•—"
@@ -625,7 +639,7 @@ trigger4 = movecontact
 
 [State -1];”’—…–Å¸(MAX)
 type = ChangeState
-value = 3200
+value = 3200	;SENTI zero fullscreen
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "”’—…–Å¸"
@@ -645,7 +659,7 @@ trigger4 = movecontact
 ;==============================================================================
 [State -1];”’—…–Å¸
 type = ChangeState
-value = 2300
+value = 2300	;SENTI zero fullscreen
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "”’—…–Å¸"
@@ -662,7 +676,7 @@ trigger4 = movecontact
 
 [State -1];‹•‹ó¥™‹“ß
 type = ChangeState
-value = 2200
+value = 2200	;SENTI counter 
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "‹•‹ó¥™‹“ß"
@@ -679,7 +693,7 @@ trigger4 = movecontact
 
 [State -1];‰A—zE‘º³
 type = ChangeState
-value = 2100
+value = 2100	;SENTI charge freeman slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "‰A—zE‘º³"
@@ -696,7 +710,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jEù•—
 type = ChangeState
-value = 2000
+value = 2000	;SENTI zero sanslash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "Ža•—‰”jEù•—"
@@ -716,7 +730,7 @@ trigger4 = movecontact
 ;==============================================================================
 [State -1];Ža•—‰”jEâ‰e
 type = ChangeState
-value = 1500
+value = 1500	;SENTI down zero slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "–‚ŒŽ"
@@ -728,7 +742,7 @@ trigger2 = movecontact
 
 [State -1];Ža•—‰”jEãÄ”e
 type = ChangeState
-value = 1350
+value = 1350	;SENTI upper slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "ãÄ”e"
@@ -744,7 +758,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jE™€‰å
 type = ChangeState
-value = 1300
+value = 1300	;SENTI upper slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "™€‰å"
@@ -760,7 +774,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jEŽE–‚
 type = ChangeState
-value = 1250
+value = 1250	;SENTI 1 hand slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "ŽE–‚"
@@ -776,7 +790,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jE”¾‹¾
 type = ChangeState
-value = 1200
+value = 1200	;SENTI 1 other hand slash
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "”¾‹¾"
@@ -792,7 +806,7 @@ trigger4 = movecontact
 
 [State -1];‹•‹ówEè…–‚
 type = ChangeState
-value = 1115
+value = 1115	;SENTI hook punch
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "è…–‚a" || command = "è…–‚b" 
@@ -806,7 +820,7 @@ trigger2 = time <= 22
 
 [State -1];‹•‹ówEg˜@
 type = ChangeState
-value = 1150
+value = 1150	;SENTI counterwire punch
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "g˜@a" || command = "g˜@b" 
@@ -820,7 +834,7 @@ trigger2 = time <= 22
 
 [State -1];‹•‹ówE˜@‰Ø
 type = ChangeState
-value = 1060
+value = 1060	;SENTI low kick then kick
 triggerall = var(59) = 0
 triggerall = PalNo = [7,12]
 triggerall = command = "è…–‚a" || command = "è…–‚b"
@@ -837,7 +851,7 @@ trigger3 = movecontact
 ;==============================================================================
 [State -1];‰¹‘ƒ’Ã—¬Œ‰A—zƒmŒ^‰œ‹`E‹ã”ö
 type = ChangeState
-value = 4000
+value = 4000	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "‰¹‘ƒ’Ã—¬Œ‰A—zƒmŒ^‰œ‹`E‹ã”ö"
@@ -853,7 +867,7 @@ trigger2 = StateNo = 40
 ;==============================================================================
 [State -1];‹•‹ó¥—…™‹
 type = ChangeState
-value = 3500
+value = 3500	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "‹•‹ó¥—…™‹"
@@ -874,7 +888,7 @@ trigger4 = movecontact
 ;==============================================================================
 [State -1];‰A—z¥—z‰Š
 type = ChangeState
-value = 3100
+value = 3100	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "‰A—z¥—z‰Š"
@@ -891,7 +905,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jEŽ¾•—
 type = ChangeState
-value = 3000
+value = 3000	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "Ža•—‰”jEŽ¾•—"
@@ -908,7 +922,7 @@ trigger4 = movecontact
 
 [State -1];”’—…–Å¸(MAX)
 type = ChangeState
-value = 3200
+value = 3200	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "”’—…–Å¸"
@@ -928,7 +942,7 @@ trigger4 = movecontact
 ;==============================================================================
 [State -1];”’—…–Å¸
 type = ChangeState
-value = 2300
+value = 2300	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "”’—…–Å¸"
@@ -945,7 +959,7 @@ trigger4 = movecontact
 
 [State -1];‹•‹ó¥™‹“ß
 type = ChangeState
-value = 2200
+value = 2200	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "‹•‹ó¥™‹“ß"
@@ -956,7 +970,7 @@ trigger1 = ctrl = 1
 
 [State -1];‰A—zE‘º³
 type = ChangeState
-value = 2100
+value = 2100	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "‰A—zE‘º³"
@@ -973,7 +987,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jEù•—
 type = ChangeState
-value = 2000
+value = 2000	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "Ža•—‰”jEù•—"
@@ -993,7 +1007,7 @@ trigger4 = movecontact
 ;==============================================================================
 [State -1];Ža•—‰”jEâ‰e
 type = ChangeState
-value = 1500
+value = 1500	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "–‚ŒŽ"
@@ -1006,7 +1020,7 @@ trigger2 = movecontact
 
 [State -1];Ža•—‰”jEãÄ”e
 type = ChangeState
-value = 1350
+value = 1350	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "ãÄ”e"
@@ -1023,7 +1037,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jE™€‰å
 type = ChangeState
-value = 1300
+value = 1300	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "™€‰å"
@@ -1040,7 +1054,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jEŽE–‚
 type = ChangeState
-value = 1250
+value = 1250	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "ŽE–‚"
@@ -1057,7 +1071,7 @@ trigger4 = movecontact
 
 [State -1];Ža•—‰”jE”¾‹¾
 type = ChangeState
-value = 1200
+value = 1200	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "”¾‹¾"
@@ -1086,7 +1100,7 @@ trigger4 = movecontact
 
 [State -1];‹•‹ówEè…–‚
 type = ChangeState
-value = 1115
+value = 1115	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "è…–‚a" || command = "è…–‚b" 
@@ -1101,7 +1115,7 @@ trigger2 = time <= 22
 
 [State -1];‹•‹ówEg˜@
 type = ChangeState
-value = 1150
+value = 1150	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "g˜@a" || command = "g˜@b" 
@@ -1116,7 +1130,7 @@ trigger2 = time <= 22
 
 [State -1];‹•‹ówEè…–‚(’·)
 type = ChangeState
-value = 1105
+value = 1105	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "g˜@b"
 triggerall = command != "holddown"
@@ -1131,7 +1145,7 @@ trigger4 = movecontact
 
 [State -1];‹•‹ówEè…–‚(’Z)
 type = ChangeState
-value = 1100
+value = 1100	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "g˜@a"
 triggerall = command != "holddown"
@@ -1146,7 +1160,7 @@ trigger4 = movecontact
 
 [State -1];‹•‹ówE˜@‰Ø
 type = ChangeState
-value = 1060
+value = 1060	;SENTI
 triggerall = var(59) = 0
 triggerall = PalNo != [7,12]
 triggerall = command = "è…–‚a" || command = "è…–‚b"
@@ -1195,7 +1209,7 @@ trigger3 = movecontact
 
 [State -1];‰A—zE–‚ŒŽ
 type = ChangeState
-value = 1400
+value = 1400	;SENTI down slash
 triggerall = var(59) = 0
 triggerall = command = "–‚ŒŽ"
 triggerall = command != "holddown"
@@ -1209,7 +1223,7 @@ trigger2 = movecontact
 ;==============================================================================
 [State -1];“Š‚°‚P
 type = ChangeState
-value = 900
+value = 900	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "y"
 triggerall = command = "holdfwd"
@@ -1219,7 +1233,7 @@ trigger1 = ctrl = 1
 
 [State -1];“Š‚°2
 type = ChangeState
-value = 910
+value = 910	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "b"
 triggerall = command = "holdfwd"
@@ -1229,7 +1243,7 @@ trigger1 = ctrl = 1
 
 [State -1];‹•‹ó•Ç
 type = ChangeState
-value = 800
+value = 800	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "c"  || command = "helper"
 trigger1 = statetype != A
@@ -1237,7 +1251,7 @@ trigger1 = ctrl = 1
 
 [State -1];—§‚¿
 type = ChangeState
-value = 815
+value = 815	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "c"  || command = "helper"
 triggerall = statetype != A
@@ -1246,7 +1260,7 @@ trigger1 = stateno = [150,151]
 
 [State -1];‹ó’†‚Ó‚Á‚Æ‚Î‚µ
 type = ChangeState
-value = 810
+value = 810	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "c"
 triggerall = command != "holddown"
@@ -1259,7 +1273,7 @@ trigger1 = ctrl = 1
 
 [State -1];—§‚¿‹­ƒLƒbƒN
 type = ChangeState
-value = 230
+value = 230	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "b"
 triggerall = command != "holddown"
@@ -1270,7 +1284,7 @@ trigger2 = movecontact
 
 [State -1];—§‚¿ŽãƒLƒbƒN
 type = ChangeState
-value = 220
+value = 220	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "a"
 triggerall = command != "holddown"
@@ -1279,7 +1293,7 @@ trigger1 = ctrl = 1
 
 [State -1];—§‚¿‹­ƒpƒ“ƒ`
 type = ChangeState
-value = 210
+value = 210	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "y"
 triggerall = command != "holddown"
@@ -1290,7 +1304,7 @@ trigger2 = movecontact
 
 [State -1];—§‚¿Žãƒpƒ“ƒ`
 type = ChangeState
-value = 200
+value = 200	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "x"
 triggerall = command != "holddown"
@@ -1303,7 +1317,7 @@ trigger1 = ctrl = 1
 
 [State -1];‹­ƒLƒbƒN
 type = ChangeState
-value = 430
+value = 430	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "b"
 triggerall = command = "holddown"
@@ -1314,7 +1328,7 @@ trigger2 = movecontact
 
 [State -1];ŽãƒLƒbƒN
 type = ChangeState
-value = 420
+value = 420	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "a"
 triggerall = command = "holddown"
@@ -1323,7 +1337,7 @@ trigger1 = ctrl = 1
 
 [State -1];‹­ƒpƒ“ƒ`
 type = ChangeState
-value = 410
+value = 410	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "y"
 triggerall = command = "holddown"
@@ -1334,7 +1348,7 @@ trigger2 = movecontact
 
 [State -1];Žãƒpƒ“ƒ`
 type = ChangeState
-value = 400
+value = 400	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "x"
 triggerall = command = "holddown"
@@ -1346,7 +1360,7 @@ trigger1 = ctrl = 1
 ;==============================================================================
 [State -1];‹­ƒLƒbƒN
 type = ChangeState
-value = 630
+value = 630	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "b" || command = "y"
 trigger1 = statetype = A
@@ -1354,7 +1368,7 @@ trigger1 = ctrl = 1
 
 [State -1];ŽãƒLƒbƒN
 type = ChangeState
-value = 620
+value = 620	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "a" || command = "x"
 trigger1 = statetype = A
@@ -1365,7 +1379,7 @@ trigger1 = ctrl = 1
 ;==============================================================================
 [State -1];‹Ù‹}‰ñ”ð
 type = ChangeState
-value = 701
+value = 701	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "z"
 triggerall = command = "holdback"
@@ -1374,7 +1388,7 @@ trigger1 = ctrl = 1
 
 [State -1];‰ñ‚èž‚Ý
 type = ChangeState
-value = 700
+value = 700	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "z"
 trigger1 = statetype != A
@@ -1385,7 +1399,7 @@ trigger2 = stateno = [150,151]
 ;ƒWƒƒƒ“ƒv
 [State -1, Jump Cancel]
 type = ChangeState
-value = 40
+value = 40	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "holdup"
 triggerall = command != "holddown"
@@ -1396,7 +1410,7 @@ trigger2 = ctrl
 
 [State -1, Jump Cancel]
 type = ChangeState
-value = 45
+value = 45	;SENTI
 triggerall = var(59) = 0
 triggerall = command = "holdup"
 triggerall = command != "holddown"
@@ -1422,7 +1436,8 @@ trigger3 = movecontact
 ;------------------------------------------------------------------------------
 [State -1]
 type = ChangeState
-value = 930
+value = 930	;SENTI
+triggerall = var(59) = 0
 trigger1 = command = "29"
 trigger1 = statetype = S
 trigger1 = ctrl = 1
