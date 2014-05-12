@@ -70,6 +70,211 @@ a = a
 b = b
 c = c
 s = s
+;SENTI
+[Command]
+name = "AI0"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI1"
+command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b
+time = 0
+[Command]
+name = "AI2"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI3"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI4"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI5"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI6"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI7"
+command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F
+time = 0
+[Command]
+name = "AI8"
+command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+time = 0
+[Command]
+name = "AI9"
+command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+time = 0
+[Command]
+name = "AI10"
+command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U
+time = 0
+[Command]
+name = "AI11"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI12"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI13"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI14"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI15"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI16"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI17"
+command = a,B,c,x,y,z,s,B,D,F,U,a,b,c,x,y,z,s,s
+time = 0
+[Command]
+name = "AI18"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI19"
+command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b
+time = 0
+[Command]
+name = "AI20"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI21"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI22"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI23"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI24"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI25"
+command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F
+time = 0
+[Command]
+name = "AI26"
+command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+time = 0
+[Command]
+name = "AI27"
+command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+time = 0
+[Command]
+name = "AI28"
+command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U
+time = 0
+[Command]
+name = "AI29"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI30"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI31"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI32"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI33"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI34"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI35"
+command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b
+time = 0
+[Command]
+name = "AI36"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI37"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI38"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI39"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI40"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+time = 0
+[Command]
+name = "AI41"
+command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F
+time = 0
+[Command]
+name = "AI42"
+command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+time = 0
+[Command]
+name = "AI43"
+command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B
+time = 0
+[Command]
+name = "AI44"
+command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U
+time = 0
+[Command]
+name = "AI45"
+command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+time = 0
+[Command]
+name = "AI46"
+command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c
+time = 0
+[Command]
+name = "AI47"
+command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x
+time = 0
+[Command]
+name = "AI48"
+command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+time = 0
+[Command]
+name = "AI49"
+command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z
+time = 0
+[Command]
+name = "AI50"
+command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s
+;SENTI
 
 ;-| •W€‰» |-------------------------------------------------------
 [Defaults]
@@ -362,9 +567,10 @@ time = 1
 ;SENTI
 
 [State -1, AI force]
-type = VarSet
-var(59) = 1
+type = DisplayToClipboard
 trigger1 = 1
+params = var(59), p2dist X, p2dist Y, p2bodydist X, p2bodydist Y
+text = "%d, %d, %d, %d, %d"
 
 [State -1, HP detect]
 type = VarSet
@@ -507,6 +713,7 @@ triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101])
 triggerall = random > 180
+triggerall = numprojID(1000) = 0
 trigger1 = enemynear, movetype = A
 Trigger1 = p2dist x > -10+5*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 Trigger1 = p2dist x < 40+5*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
@@ -548,6 +755,7 @@ triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101])
 triggerall = var(56) = 0
+triggerall = numprojID(1000) = 0
 TriggerAll = p2dist x < 62+8*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 TriggerAll = p2dist x > -60+8*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 TriggerAll = p2dist y < -15-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*8))
@@ -590,7 +798,7 @@ trigger1 = (helper, movecontact) || projcontact = 1, < 14
 
 [State -1, diagonal kick/ typhoon/ genocide/reppu]
 type = ChangeState
-value = ifelse(ifelse(facing=1,pos X<-35,pos X>35),ifelse(numhelper(3600)=0,2997,ifelse(p2dist X<150,105,ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,105)))),ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,ifelse(p2dist X>160&&abs(P2dist Y)<48,1000,105))))
+value = ifelse(ifelse(facing=1,pos X<-35,pos X>35),ifelse(numhelper(3600)=0,2997,ifelse(p2dist X<150,105,ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,105)))),ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,ifelse(p2dist X>160&&abs(P2dist Y)<48,ifelse(numproj,1700,1000),105))))
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
@@ -599,6 +807,7 @@ triggerall = p2dist X > 93
 triggerall = enemynear, numproj = 0
 triggerall = random > 200
 triggerall = ifelse(enemynear, statetype = A, random > 100, random > 900)
+triggerall = ifelse(numproj=0, ifelse(numhelper(3500) + numhelper(3600) > 0, enemynear, vel X != 0 || (enemynear, vel X = 0 && enemynear, movetype = I && enemynear, animtime > -5),1),1)
 trigger1 = p2dist X > 130+5*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 trigger1 = enemynear, movetype = A
 trigger1 = enemynear, hitdefattr = SC, NA, SA, NT, ST
@@ -606,13 +815,14 @@ trigger2 = (enemynear, vel X < 1 && (enemynear, movetype = I || enemynear, time 
 
 [State -1, diagonal kick/ typhoon/ genocide/reppu]
 type = ChangeState
-value = ifelse(ifelse(facing=1,pos X<-35,pos X>35),ifelse(numhelper(3600)=0,2997,ifelse(p2dist X<150,105,ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,ifelse(p2dist X>150,1000,2500))))),ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,ifelse(p2dist X<150,105,ifelse(numproj=0,1000,2500)))))
+value = ifelse(ifelse(facing=1,pos X<-35,pos X>35),ifelse(numhelper(3600)=0,2997,ifelse(p2dist X<150,105,ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,ifelse(numproj,1700,1000))))),ifelse(numhelper(3500)=0,2996,ifelse(p2dist X<90,1300,ifelse(p2dist X<150,105,ifelse(numproj,1700,1000)))))
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101])
 triggerall = p2dist X > 93
 triggerall = enemynear, numproj = 0
+triggerall = ifelse(numproj=0, ifelse(numhelper(3500) + numhelper(3600) > 0, enemynear, vel X != 0 || (enemynear, vel X = 0 && enemynear, movetype = I && enemynear, animtime > -5),1),1)
 triggerall = random > 200
 triggerall = ifelse(enemynear, statetype = C, random > 100, random > 900)
 trigger1 = enemynear, movetype = A
@@ -622,13 +832,14 @@ trigger2 = (enemynear, vel X < 1 && (enemynear, movetype = I || enemynear, time 
 
 [State -1, diagonal kick/ typhoon/ genocide/reppu]
 type = ChangeState
-value = ifelse(numhelper(3500)=0,2996,ifelse(p2dist X < 135,105,ifelse(numhelper(3600)=0 && ifelse(facing=1,pos X<-35,pos X>35),2997,ifelse(p2dist X<90,1300,ifelse(p2dist X > 150, 1000, 2500)))))
+value = ifelse(numhelper(3500)=0,2996,ifelse(p2dist X < 135,105,ifelse(numhelper(3600)=0 && ifelse(facing=1,pos X<-35,pos X>35),2997,ifelse(p2dist X<90,1300,ifelse(numproj, 1700, 1000)))))
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101])
 triggerall = p2dist X > 93
 triggerall = enemynear, numproj = 0
+triggerall = ifelse(numproj=0, ifelse(numhelper(3500) + numhelper(3600) > 0, enemynear, vel X != 0 || (enemynear, vel X = 0 && enemynear, movetype = I && enemynear, animtime > -5),1),1)
 triggerall = random > 200
 triggerall = ifelse(enemynear, statetype = S, random > 100, random > 900)
 trigger1 = enemynear, movetype = A
@@ -695,14 +906,15 @@ trigger1 = !(enemynear, hitdefattr = SCA, AT)
 
 [State -1, chance1]
 type = ChangeState
-value = ifelse(random % 2 = 0 && random < 450 && (p2dist X > 170), ifelse(random % 3 > 0 && random > 200 && numprojID(1000) = 0, 1000, 1050),ifelse(random % 4 > 0 && random > 400 && ifelse(facing = 1, pos X < -35, pos X > 35)&&p2dist X>95, 2997, ifelse(numhelper(3600) > 0 && numproj > 0, 2996, 1000)))
+value = ifelse(random % 2 = 0 && random < 450 && (p2dist X > 170), ifelse(numproj=0,ifelse(random % 3 > 0 && random > 200, 1000, 1050),1700),ifelse(random % 4 > 0 && random > 400 && ifelse(facing = 1, pos X < -35, pos X > 35)&&p2dist X>95, 2997, ifelse(numhelper(3600) > 0 && numproj > 0, 2996, ifelse(numproj=0,1000,1700))))
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != A
 triggerall = ctrl
 triggerall = enemynear, movetype != A
-triggerall = numhelper(3500) + numhelper(3600) + numprojID(1000) = 0
+triggerall = numhelper(3500) + numhelper(3600) + numproj = 0
+triggerall = ifelse(numproj=0, ifelse(numhelper(3500) + numhelper(3600) > 0, enemynear, vel X != 0 || (enemynear, vel X = 0 && enemynear, movetype = I && enemynear, animtime > -5),1),1)
 triggerall = random > 200
 trigger1 = enemynear, stateno = 5120 || p2statetype = L
 trigger1 = abs(p2dist X) = [120, 190]
@@ -721,7 +933,8 @@ triggerall = statetype != A
 triggerall = p2statetype != A
 triggerall = ctrl
 triggerall = enemynear, movetype != A
-triggerall = numhelper(3500) + numhelper(3600) + numprojID(1000) = 0
+triggerall = numhelper(3500) + numhelper(3600) + numproj = 0
+triggerall = ifelse(numproj=0, ifelse(numhelper(3500) + numhelper(3600) > 0, enemynear, vel X != 0 || (enemynear, vel X = 0 && enemynear, movetype = I && enemynear, animtime > -5),1),1)
 triggerall = random > 200
 trigger1 = enemynear, stateno = 5120 || p2statetype = L
 trigger1 = abs(p2dist X) > 190
@@ -732,12 +945,13 @@ trigger2 = enemynear, movetype != I || (enemynear, movetype = I && enemynear, an
 
 [State -1, chance2]
 type = ChangeState
-value = ifelse(random > 870 && random % 4 > 0, ifelse(enemynear, numproj && random > 460 && ifelse(facing = 1, pos X < -35, pos X > 35)&&p2dist X>95, 2997, 2996), ifelse(numhelper(3500) = 0, 2996, ifelse(random % 3 > 0 && random > 200 && numprojID(1000) = 0, 1000, 1050)))
+value = ifelse(random > 870 && random % 4 > 0, ifelse(enemynear, numproj && random > 460 && ifelse(facing = 1, pos X < -35, pos X > 35)&&p2dist X>95, 2997, 2996), ifelse(numhelper(3500) = 0, 2996, ifelse(numproj=0,ifelse(random % 3 > 0 && random > 200, 1000, 1050),1700)))
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = ctrl
-triggerall = numprojID(1000) < 1 || numhelper(3500) < 1 || numhelper(3600) < 1
+triggerall = numproj < 1 || numhelper(3500) < 1 || numhelper(3600) < 1
+triggerall = ifelse(numproj=0, ifelse(numhelper(3500) + numhelper(3600) > 0, enemynear, vel X != 0 || (enemynear, vel X = 0 && enemynear, movetype = I && enemynear, animtime > -5),1),1)
 trigger1 = abs(p2dist X) > 178+5*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 trigger1 = abs(p2dist X) < 210
 trigger1 = random % 100 < 50
@@ -846,13 +1060,13 @@ trigger2 = ifelse(p2statetype = S, ifelse(p2dist X > 129, random % 3 > 0 && rand
 
 [State -1, 2 phase kick chain 2]
 type = ChangeState
-value = ifelse(p2dist X < 62 && random % 100 > 50, 2500, ifelse(random % 8 > 0, 1000, 1050))
+value = ifelse(p2dist X < 62 && random % 100 > 50, 2500, ifelse(numproj=0,ifelse(random % 3 > 0 && random > 200, 1000, 1050),1700))
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != L
 triggerall = p2statetype != A
-triggerall = numprojID(1000) = 0
+triggerall = numproj = 0
 trigger1 = stateno = 320 && AnimElemtime(4) >= 0 && AnimElemtime(5) < 0 && moveguarded
 trigger1 = ifelse(p2statetype = S, ifelse(p2dist X > 121 || p2dist X < 62, random % 10 > 4 && random > 500, random > 700), random % 10 = 0 && random > 900)
 trigger2 = stateno = 320 && AnimElemtime(4) >= 0 && AnimElemtime(5) < 0 && movehit
