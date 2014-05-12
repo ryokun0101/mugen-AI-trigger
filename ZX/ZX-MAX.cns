@@ -1,0 +1,2556 @@
+;-----------------------------------------------------------------------
+;演出
+;-----------------------------------------------------------------------
+;エフェクト
+[Statedef 30000]
+type    = A
+movetype= I
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 6011
+sprpriority = 3
+facep2 = 1
+
+;[State 3100, 3]
+;type = SuperPause
+;trigger1 = Time = 1
+;anim = s6001
+;pos = -19,-79
+;time = 30
+;sound = s10,0
+
+[State 3100,AssertSpecial]
+type = AssertSpecial
+trigger1 = Time >= 0
+trigger1 = Time <= 30
+flag = NoFG
+flag2 = NoBG
+;ignorehitpause = 1
+
+[State 1000, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S10,1
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6010
+scale = 1, 1
+postype = p1
+pos = 0,0
+sprpriority = 0
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6012
+scale = 1, 1
+postype = p1
+pos = 0,0
+sprpriority = -1
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6040
+scale = 0.5, 0.5
+postype = back
+pos = 0, 75
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6060
+scale = 0.5, 0.5
+postype = back
+pos = 0, 75
+sprpriority = 4
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 2000,7]
+type = DestroySelf
+trigger1 = Time = 30
+
+;-----------------------------------------------------------------------
+;MAX超必殺技
+;-----------------------------------------------------------------------
+;斬風燕破・疾風
+[Statedef 3000]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 2000
+sprpriority = 2
+facep2 = 1
+
+[State 190]
+type = poweradd
+triggerall = var(56) != 1
+trigger1 = Time = 1
+value = -3000
+
+[State 190]
+type = poweradd
+triggerall = var(56) = 1
+trigger1 = Time = 1
+value = -2000
+
+[State 20000]
+type = Helper
+trigger1 = time = 1
+persistent = 0
+id = 30000
+name = "Hiper"
+pos = -0,-56
+postype = P1
+stateno = 30000
+helpertype = normal
+supermove = 1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+supermovetime = 99999
+pausemovetime = 99999
+size.xscale = 1
+size.yscale = 1
+
+[State 500,5];タイムストップ
+type = Pause
+trigger1 = time = 1
+time = 30
+;movetime = 30
+
+[State 1000, NotHitBy]
+type = NotHitBy
+trigger1 = AnimElem = 12, < 0
+value = SCA
+
+[State 1000, Width]
+type = Width
+trigger1 =  AnimElem = 4, < 0
+edge = 20,0
+
+[State 1300, StateTypeSet]
+type = StateTypeSet
+trigger1 = AnimElem = 65
+stateType = A
+physics = N
+
+[State 1000, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 34
+trigger3 = AnimElem = 62
+value = S1000,10
+
+[State 1200, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 10, = 1
+trigger2 = AnimElem = 11, = 1
+x = 7
+
+[State 1300, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 61, = 1
+trigger2 = AnimElem = 62, = 1
+trigger3 = AnimElem = 63, = 1
+trigger4 = AnimElem = 64, = 1
+x = 8
+
+[State 1300, VelSet]
+type = VelSet
+trigger1 = AnimElem = 65
+x = 4.2
+y = -9.5
+
+[State 1300, VelSet]
+type = VelSet
+trigger1 = AnimElem = 73
+x = 0
+
+[State 1300, VelAdd]
+type = VelAdd
+trigger1 = AnimElem = 65, > 0
+y = .46
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 13
+trigger2 = time = 15
+trigger3 = time = 17
+trigger4 = time = 19
+trigger5 = time = 21
+trigger6 = time = 69
+trigger7 = time = 71
+trigger8 = time = 73
+trigger9 = time = 75
+trigger10 = time = 77
+trigger11 = time = 79
+attr = S, SA
+damage = 15,5
+animtype = Hard
+air.animtype = Back
+ground.type = High
+guardflag = M
+hitflag = MAF
+priority = 7, Hit
+pausetime = 0,4
+sparkxy = -25, -75-(P2StateType=A)*20
+hitsound   = s1,0
+guardsound = 6,0
+sparkno = 12
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,0
+airguard.velocity = 0,0
+air.velocity = 0,0
+air.type = High
+air.hittime = 14
+givepower = 20,40
+fall.recover = 0
+fall = 0
+air.Fall = 1
+down.bounce = 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 23
+trigger2 = time = 81
+attr = S, SA
+damage = 12,5
+animtype = Hard
+air.animtype = Back
+ground.type = High
+guardflag = M
+hitflag = MAF
+priority = 7, Hit
+pausetime = 0,50
+sparkxy = -25, -75-(P2StateType=A)*20
+hitsound   = s1,0
+guardsound = 6,0
+sparkno = 12
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,0
+airguard.velocity = 0,0
+air.velocity = 0,0
+air.type = High
+air.hittime = 14
+givepower = 20,40
+fall.recover = 0
+fall = 0
+air.Fall = 1
+down.bounce = 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 124
+trigger2 = time = 126
+trigger3 = time = 129
+trigger4 = time = 130
+trigger5 = time = 132
+attr = S, SA
+damage = 12,5
+animtype = Hard
+air.animtype = Back
+ground.type = High
+guardflag = M
+hitflag = MAF
+priority = 7, Hit
+pausetime = 0,1
+sparkxy = -25, -75-(P2StateType=A)*20
+hitsound   = s1,0
+guardsound = 6,0
+sparkno = 12
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,-6
+air.velocity = -2,-6
+air.type = High
+air.hittime = 14
+givepower = 20,40
+fall.recover = 0
+fall = 0
+air.Fall = 1
+down.bounce = 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 134
+attr = S, SA
+damage = 50,5
+animtype = Hard
+air.animtype = Back
+ground.type = High
+guardflag = M
+hitflag = MAF
+priority = 7, Hit
+pausetime = 0,1
+sparkxy = -25, -75-(P2StateType=A)*20
+hitsound   = s1,0
+guardsound = 6,0
+sparkno = 12
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+air.velocity = -5,0
+air.type = High
+air.hittime = 14
+givepower = 20,40
+fall.recover = 0
+fall = 0
+air.Fall = 1
+down.bounce = 1
+ID = 1205
+
+[State 1000, TargetState]
+type = TargetState
+triggerall = NumTarget(1205)
+trigger1 = MoveHit
+trigger1 = Target,StateNo != 1205
+value = 1205
+ID = 1205
+ignorehitpause = 1
+
+[State 1000, TargetState]
+type = TargetState
+triggerall = NumTarget(1205)
+triggerall = Target,StateType = S
+trigger1 = MoveGuarded
+trigger1 = Target,StateNo != 1206
+value = 1206
+ID = 1205
+ignorehitpause = 1
+
+[State 1000, TargetState]
+type = TargetState
+triggerall = NumTarget(1205)
+triggerall = Target,StateType = C
+trigger1 = MoveGuarded
+trigger1 = Target,StateNo != 1207
+value = 1207
+ID = 1205
+ignorehitpause = 1
+
+[State 1300, End]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 1351
+
+;-----------------------------------------------------------------------
+;虚空･陽炎
+[Statedef 3100]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 2100
+sprpriority = 2
+facep2 = 1
+
+[State 190]
+type = poweradd
+triggerall = var(56) != 1
+trigger1 = Time = 1
+value = -3000
+
+[State 190]
+type = poweradd
+triggerall = var(56) = 1
+trigger1 = Time = 1
+value = -2000
+
+[State 20000]
+type = Helper
+trigger1 = time = 1
+persistent = 0
+id = 30000
+name = "Hiper"
+pos = 10,-92
+postype = P1
+stateno = 30000
+helpertype = normal
+supermove = 1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+supermovetime = 99999
+pausemovetime = 99999
+size.xscale = 1
+size.yscale = 1
+
+[State 500,5];タイムストップ
+type = Pause
+trigger1 = time = 1
+time = 30
+movetime = 10
+
+[State 1300, End]
+type = ChangeState
+triggerall = time >=12
+triggerall = time <=40
+trigger1 = command != "長押し"
+value = 3101
+
+[State 1300, End]
+type = ChangeState
+triggerall = time >= 41
+trigger1 = command != "長押し"
+value = 3102
+
+;-----------------------------------------------------------------------
+;虚空･陽炎(弱)
+[Statedef 3101]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 2101
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 1
+value = 1000, 4
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 4
+attr = S, HA
+damage = 320,25
+animtype = back
+guardflag = HA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 15, 15
+guard.pausetime = 3, 10
+sparkxy = -10, -76
+hitsound   = s1,0
+guardsound = 6,0
+sparkno = 12
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -4,0
+airguard.velocity = -4,-3
+air.type = High
+air.velocity = -3,-2
+air.hittime = 14
+getpower = 0,0
+fall.recover = 0
+fall = 1
+air.Fall = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 0
+anim = 2105
+scale = 1, 1
+postype = p1
+pos = 0, 0
+sprpriority = 1
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;虚空･陽炎(強)
+[Statedef 3102]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 2101
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 1
+value = 1000, 4
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 4
+attr = S, HA
+damage = 380,35
+animtype = back
+guardflag = HA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 15, 15
+guard.pausetime = 3, 10
+sparkxy = -10, -76
+hitsound   = s1,0
+guardsound = 6,0
+sparkno = 12
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -4,0
+airguard.velocity = -4,-3
+air.type = High
+air.velocity = -3,-2
+air.hittime = 14
+getpower = 0,0
+fall.recover = 0
+fall = 1
+air.Fall = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 0
+anim = 2105
+scale = 1, 1
+postype = p1
+pos = 0, 0
+sprpriority = 1
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;白羅滅精(MAX)
+[Statedef 3200]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 3000
+sprpriority = 4
+facep2 = 1
+
+[State 1000, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,190]
+value = SCA
+
+[State 190]
+type = poweradd
+triggerall = var(56) != 1
+trigger1 = Time = 6
+value = -2000
+
+[State 190]
+type = poweradd
+triggerall = var(56) = 1
+trigger1 = Time = 6
+value = -1000
+
+[State 20000]
+type = Helper
+trigger1 = time = 6
+persistent = 0
+id = 20000
+name = "Hiper"
+pos = 25,-106
+postype = P1
+stateno = 20000
+helpertype = normal
+supermove = 1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+supermovetime = 99999
+pausemovetime = 99999
+size.xscale = 1
+size.yscale = 1
+
+[State 500,5];タイムストップ
+type = Pause
+trigger1 = time = 6
+time = 30
+;movetime = 10
+
+[State 4800, ライフバー消去]
+type = AssertSpecial
+trigger1 = time = [7,190]
+flag  = NoFG
+flag2  = NoBG
+ignorehitpause = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 7
+value = 1000, 8
+channel = 3
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 0
+trigger1 = ProjHitTime(3015) = [0,7]
+var(55) = 1
+ignorehitpause = 1
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 0
+trigger1 = ProjHitTime(3016) = [0,7]
+var(55) = 1
+ignorehitpause = 1
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 1
+trigger1 = ProjHitTime(3015) > 7
+var(55) = 0
+ignorehitpause = 1
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 1
+trigger1 = ProjHitTime(3016) > 7
+var(55) = 0
+ignorehitpause = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 7
+anim = 3005
+removetime = 163
+scale = 1, 1
+postype = p1
+pos = 25, -106
+sprpriority = 2
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 170
+anim = 3006
+removetime = 30
+scale = 1, 1
+postype = p1
+pos = 25, -106
+sprpriority = 2
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 7
+trigger2 = time = 12
+trigger3 = time = 28
+trigger4 = time = 44
+trigger5 = time = 60
+trigger6 = time = 76
+trigger7 = time = 92
+trigger8 = time = 108
+trigger9 = time = 124
+trigger10 = time = 140
+trigger11 = time = 156
+anim = 3010
+scale = 1, 1
+postype = p1
+pos = 25, -106
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 7
+trigger2 = time = 12
+trigger3 = time = 28
+trigger4 = time = 44
+trigger5 = time = 60
+trigger6 = time = 76
+trigger7 = time = 92
+trigger8 = time = 108
+trigger9 = time = 124
+trigger10 = time = 140
+trigger11 = time = 156
+anim = 3011
+scale = 1, 1
+postype = p1
+pos = 25, -106
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 7
+trigger2 = time = 12
+trigger3 = time = 28
+trigger4 = time = 44
+trigger5 = time = 60
+trigger6 = time = 76
+trigger7 = time = 92
+trigger8 = time = 108
+trigger9 = time = 124
+trigger10 = time = 140
+trigger11 = time = 156
+anim = 3012
+scale = 1, 1
+postype = p1
+pos = 25, -106
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 220]
+type = Explod
+trigger1 = time >= 7
+trigger1 = ProjHitTime(3015) = 1
+anim = f3
+scale = 1, 1
+postype = p2
+pos = 0, -50
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time >= 7
+trigger1 = ProjHitTime(3016) = 1
+anim = f3
+scale = 1, 1
+postype = p2
+pos = 0, -50
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time >= 7
+trigger1 = enemy,stateno = [150,155]
+trigger1 = enemy,statetime = 1
+anim = f40
+scale = 1, 1
+postype = p2
+pos = 0, -50
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 200];補正
+type = Varadd
+trigger1 = time = 1
+trigger1 = enemy,movetype = H
+trigger1 = enemy,stateno != [120,155]
+trigger1 = fvar(1) > 0.3
+fv = 1
+value = -0.10
+persistent = 0
+ignorehitpause = 1
+
+[State 200];補正
+type = Varadd
+trigger1 = time >= 1
+trigger1 = fvar(1) > 0.3
+trigger1 = ProjHitTime(3016) = 1
+fv = 1
+value = -0.07
+persistent = 0
+ignorehitpause = 1
+
+[State 200];補正
+type = Varadd
+trigger1 = time >= 1
+trigger1 = fvar(1) > 0.3
+trigger1 = ProjHitTime(3015) = 1
+fv = 1
+value = -0.07
+persistent = 0
+ignorehitpause = 1
+
+[State -2];補正
+type = Varset
+trigger1 = time >= 1
+trigger1 = fvar(1) < 0.29
+fv = 1
+value = 0.2
+ignorehitpause = 1
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time = 7
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 65*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-10
+guard.velocity = 0
+air.velocity = 8,-10
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time = 7
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 65*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-10
+guard.velocity = 0
+air.velocity = -8,-10
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 19
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 19
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 345,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 3,-10
+guard.velocity = 0
+air.velocity = 3,-10
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -295,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -3,-10
+guard.velocity = 0
+air.velocity = -3,-10
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = Time = 190
+value = 3201
+
+;-----------------------------------------------------------------------
+;白羅滅精(MAX)(終了)
+[Statedef 3201]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 3001
+sprpriority = 4
+facep2 = 0
+
+[State -3, 音を消す]
+type = StopSnd
+trigger1 = Time = 1
+value = s1000, 8
+channel = 3
+
+[State -2, VarAdd]
+type = VarAdd
+trigger1 = var(55) = 1
+trigger1 = time = 1
+var(55) = 0
+ignorehitpause = 1
+
+[State 2000, ステート変更]
+type = ChangeState
+triggerall = power >= 1000
+trigger1 = Time <= 36
+trigger1 = command = "a+b"
+value = 3202
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;白羅追蓮
+[Statedef 3202]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 3002
+sprpriority = 4
+facep2 = 1
+
+[State 1000, NotHitBy]
+type = NotHitBy
+trigger1 = time = [0,203]
+value = SCA
+
+[State 190]
+type = poweradd
+trigger1 = PalNo != [7,12]
+trigger1 = Time = 14
+value = -1000
+
+[State 190]
+type = poweradd
+trigger1 = PalNo = [7,12]
+trigger1 = Time = 14
+value = -1000
+
+[State 20000]
+type = Helper
+trigger1 = time = 14
+persistent = 0
+id = 30000
+name = "Hiper"
+pos = 13,-93
+postype = P1
+stateno = 30000
+helpertype = normal
+supermove = 1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+supermovetime = 99999
+pausemovetime = 99999
+size.xscale = 1
+size.yscale = 1
+
+[State 500,5];タイムストップ
+type = Pause
+trigger1 = time = 14
+time = 30
+;movetime = 10
+
+[State 4800, ライフバー消去]
+type = AssertSpecial
+trigger1 = time = [19,203]
+flag  = NoFG
+flag2  = NoBG
+ignorehitpause = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 19
+value = 1000, 8
+channel = 3
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 0
+trigger1 = ProjHitTime(3015) = [0,7]
+var(55) = 1
+ignorehitpause = 1
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 0
+trigger1 = ProjHitTime(3016) = [0,7]
+var(55) = 1
+ignorehitpause = 1
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 1
+trigger1 = ProjHitTime(3015) > 7
+var(55) = 0
+ignorehitpause = 1
+
+[State -2, VarAdd]
+type = VarAdd
+triggerall = var(55) = 1
+trigger1 = ProjHitTime(3016) > 7
+var(55) = 0
+ignorehitpause = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 19
+anim = 3005
+removetime = 164
+scale = 1, 1
+postype = p1
+pos = 24, -72
+sprpriority = 2
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 183
+anim = 3006
+removetime = 30
+scale = 1, 1
+postype = p1
+pos = 24, -72
+sprpriority = 2
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 19
+trigger2 = time = 25
+trigger3 = time = 41
+trigger4 = time = 57
+trigger5 = time = 73
+trigger6 = time = 89
+trigger7 = time = 105
+trigger8 = time = 121
+trigger9 = time = 137
+trigger10 = time = 153
+trigger11 = time = 169
+anim = 3010
+scale = 1, 1
+postype = p1
+pos = 24, -72
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 19
+trigger2 = time = 25
+trigger3 = time = 41
+trigger4 = time = 57
+trigger5 = time = 73
+trigger6 = time = 89
+trigger7 = time = 105
+trigger8 = time = 121
+trigger9 = time = 137
+trigger10 = time = 153
+trigger11 = time = 169
+anim = 3011
+scale = 1, 1
+postype = p1
+pos = 24, -72
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 19
+trigger2 = time = 25
+trigger3 = time = 41
+trigger4 = time = 57
+trigger5 = time = 73
+trigger6 = time = 89
+trigger7 = time = 105
+trigger8 = time = 121
+trigger9 = time = 137
+trigger10 = time = 153
+trigger11 = time = 169
+anim = 3012
+scale = 1, 1
+postype = p1
+pos = 24, -72
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 220]
+type = Explod
+trigger1 = time >= 19
+trigger1 = ProjHitTime(3015) = 1
+anim = f3
+scale = 1, 1
+postype = p2
+pos = 0, -50
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time >= 19
+trigger1 = ProjHitTime(3016) = 1
+anim = f3
+scale = 1, 1
+postype = p2
+pos = 0, -50
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time >= 19
+trigger1 = enemy,stateno = [150,155]
+trigger1 = enemy,statetime = 1
+anim = f40
+scale = 1, 1
+postype = p2
+pos = 0, -50
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 200];補正
+type = Varadd
+trigger1 = time = 1
+trigger1 = enemy,movetype = H
+trigger1 = enemy,stateno != [120,155]
+trigger1 = fvar(1) > 0.3
+fv = 1
+value = -0.10
+persistent = 0
+ignorehitpause = 1
+
+[State 200];補正
+type = Varadd
+trigger1 = time >= 1
+trigger1 = fvar(1) > 0.3
+trigger1 = ProjHitTime(3016) = 1
+fv = 1
+value = -0.07
+persistent = 0
+ignorehitpause = 1
+
+[State 200];補正
+type = Varadd
+trigger1 = time >= 1
+trigger1 = fvar(1) > 0.3
+trigger1 = ProjHitTime(3015) = 1
+fv = 1
+value = -0.07
+persistent = 0
+ignorehitpause = 1
+
+[State -2];補正
+type = Varset
+trigger1 = time >= 1
+trigger1 = fvar(1) < 0.29
+fv = 1
+value = 0.2
+ignorehitpause = 1
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time = 19
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 65*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-10
+guard.velocity = 0
+air.velocity = 8,-10
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time = 19
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 65*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-10
+guard.velocity = 0
+air.velocity = -8,-10
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3015) = 0
+projID = 3015
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = -20
+projedgebound = 999
+projstagebound = 999
+offset = 320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = 8,-7
+guard.velocity = 0
+air.velocity = 8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2100, Projectile1]
+type = Projectile
+trigger1 = time >= 29
+trigger1 = NumProjID(3016) = 0
+projID = 3016
+projhits = 1
+projremove = 0
+projremovetime = 16
+projanim = 3015
+velocity = 20
+projedgebound = 999
+projstagebound = 999
+offset = -320,0
+postype = P1
+attr = S,HP
+hitflag = MAFD
+guardflag = M
+animtype = UP
+ground.type = High
+priority = 7,Hit
+damage = 25*fvar(1),1
+pausetime = 1,14
+guard.pausetime = 1,12
+ground.slidetime = 17
+ground.hittime = 17
+ground.ctrltime = 17
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 30,0
+hitsound = S1,2
+guardsound = 6,0
+air.hittime = 60
+fall = 1
+fall.recover = 0
+ground.velocity = -8,-7
+guard.velocity = 0
+air.velocity = -8,-7
+yaccel = .5
+getpower = 0,0
+givepower = 20,20
+ID = 3015
+persistent = 0
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = Time = 203
+value = 2301
+

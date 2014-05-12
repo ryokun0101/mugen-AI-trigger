@@ -1,0 +1,429 @@
+;-----------------------------------------------------------------------
+;演出
+;-----------------------------------------------------------------------
+;エフェクト
+[Statedef 35000]
+type    = A
+movetype= I
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 6021
+sprpriority = 3
+facep2 = 1
+
+;[State 3100, 3]
+;type = SuperPause
+;trigger1 = Time = 1
+;anim = s6001
+;pos = -19,-79
+;time = 30
+;sound = s10,0
+
+[State 3100,AssertSpecial]
+type = AssertSpecial
+trigger1 = Time >= 0
+trigger1 = Time <= 30
+flag = NoFG
+flag2 = NoBG
+;ignorehitpause = 1
+
+[State 1000, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S10,0
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6020
+scale = 1, 1
+postype = p1
+pos = 0,0
+sprpriority = 0
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6022
+scale = 1, 1
+postype = p1
+pos = 0,0
+sprpriority = -1
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6040
+scale = 0.5, 0.5
+postype = back
+pos = 0, 75
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6060
+scale = 0.5, 0.5
+postype = back
+pos = 0, 75
+sprpriority = 4
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 2000,7]
+type = DestroySelf
+trigger1 = Time = 30
+
+;-----------------------------------------------------------------------
+;MAX2超必殺技
+;-----------------------------------------------------------------------
+;音巣津流拳陰陽ノ型奥義・九尾
+[Statedef 4000]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 4000
+sprpriority = 2
+facep2 = 1
+
+[State 190]
+type = poweradd
+triggerall = var(56) != 1
+trigger1 = Time = 1
+value = -4000
+
+[State 190]
+type = poweradd
+triggerall = var(56) = 1
+trigger1 = Time = 1
+value = -3000
+
+[State 20000]
+type = Helper
+trigger1 = time = 2
+persistent = 0
+id = 40000
+name = "Hiper"
+pos = 8,-92
+postype = P1
+stateno = 35000
+helpertype = normal
+supermove = 1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+supermovetime = 99999
+pausemovetime = 99999
+size.xscale = 1
+size.yscale = 1
+
+[State 128, ヒット定義3]
+type = NotHitBy 
+trigger1 = time = [0,15]
+value = SAC, NT, ST, HT ,NA, SA, HA ,NP, SP, HP 
+;time = 13
+
+[State 500,5];タイムストップ
+type = Pause
+trigger1 = time = 2
+time = 30
+;movetime = 30
+
+[State 1050, カウンター]
+type = reversaldef
+trigger1 =  time >= 1
+numhits = 0
+reversal.attr = SAC, NT, ST, HT ,NA, SA, HA ,NP, SP, HP 
+hitflag = MA
+pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+sparkxy = 0,0
+attr = S, HT
+numhits = 0
+priority = 5, hit
+animtype = Hard
+ground.type = Low
+forcestand = 1
+ground.slidetime = 6
+p1facing = 1
+p1stateno = 4007
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;音巣津流拳陰陽ノ型奥義・九尾(掴み)
+[Statedef 4007]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 4007
+sprpriority = 2
+facep2 = 1
+
+[State 800, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, HT
+numhits = 0
+hitflag = MAFD
+getpower = 0
+pausetime = 0,0
+priority = 3, Miss
+;hitsound   = s1,3
+sparkno = -1
+p1sprpriority = 1
+p2sprpriority = 0
+p1facing = 1
+p2facing = 1
+p1stateno = 4010
+p2stateno = 4020
+guard.dist = 0
+fall = 1
+fall.recover = 0
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;音巣津流拳陰陽ノ型奥義・九尾
+[Statedef 4010]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 4010
+sprpriority = 2
+facep2 = 1
+
+[State 4800, ライフバー消去]
+type = AssertSpecial
+trigger1 = time = [0,250]
+flag  = nobardisplay
+flag2  = timerfreeze
+flag3 = NoFG
+;flag3 = NoBG
+ignorehitpause = 1
+
+[State 810, Hurt 11]
+type = TargetLifeAdd
+trigger1 = time = 248
+value = -800
+
+[State 3100, D]
+type = AfterImage
+trigger1 = Time = 0
+trans = add1
+TimeGap  = 10
+FrameGap = 2;3
+time = 100
+PalBright   =   0,  0,  0
+PalContrast = 128,128,128
+PalAdd      =   0,  0,  0
+PalMul      =  1,1,1;.9, .9, .9
+length = 10
+sprpriority = 2
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 76
+trigger2 = time = 96
+trigger3 = time = 108
+trigger4 = time = 127
+trigger5 = time = 140
+trigger6 = time = 147
+trigger7 = time = 154
+trigger8 = time = 164
+trigger9 = time = 175
+trigger10 = time = 182
+trigger11 = time = 189
+trigger12 = time = 195
+trigger13 = time = 197
+trigger14 = time = 204
+trigger15 = time = 211
+trigger16 = time = 216
+trigger17 = time = 221
+value = 1000, 12
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 248
+value = 10, 3
+
+;[State 1600 , 2]
+;type = PalFX
+;trigger1 = time = 0
+;time = 248
+;add = 0,0,0
+;mul = 0,0,0
+
+[State 1000,2]
+type = explod
+trigger1 = Time = 0
+anim = 4016
+pos = 0,0
+scale = 1,1
+postype = back
+sprpriority = 0
+supermove = 1
+supermovetime = 50
+pausemovetime = 50
+ownpal = 1
+bindtime = -1
+
+[State 1000,2]
+type = explod
+trigger1 = Time = 73
+anim = 4015
+pos = 320,0
+scale = -0.5,0.5
+postype = back
+sprpriority = 4
+supermove = 1
+supermovetime = 50
+pausemovetime = 50
+ownpal = 1
+bindtime = -1
+
+[State 1000,2]
+type = explod
+trigger1 = Time = 248
+anim = 4017
+pos = 0,0
+scale = 1,1
+postype = back
+sprpriority = 4
+supermove = 1
+supermovetime = 50
+pausemovetime = 50
+ownpal = 1
+bindtime = -1
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = time = 249
+trigger1 = !p2life <= 0
+trigger1 = RoundState = 2
+value = 4011
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = Time = 250
+value = 4012
+
+;-----------------------------------------------------------------
+;終わり
+[Statedef 4011]
+type    = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 4011
+sprpriority = 2
+facep2 = 1
+
+[State 128, ヒット定義3]
+type = NotHitBy 
+trigger1 = time = [0,60]
+value = SAC, NT, ST, HT ,NA, SA, HA ,NP, SP, HP 
+;time = 13
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 勝利ポーズ
+;---------------------------------------------------------------------------
+[Statedef 4012]
+type     = S
+movetype = I
+physics  = N
+poweradd = 0
+ctrl     = 1
+velset   = 0,0
+
+[State 3502, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 2
+
+[State 3502, 軸位置]
+type = PosSet
+trigger1 = 1
+y = 0
+
+;-----------------------------------------------------------------------
+;音巣津流拳陰陽ノ型奥義・九尾(喰らい)
+[Statedef 4020]
+type    = U
+movetype= H
+physics = U
+velset = 0,0
+poweradd= 0
+ctrl = 0
+sprpriority = 2
+
+[State 820, 相手のアニメ変更]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 4020
+
+[State 1600 , 2]
+type = PalFX
+trigger1 = time = 0
+time = 247
+add = 0,0,0
+mul = 0,0,0
+
+[State 905, 相手ステートに戻す]
+type = SelfState
+trigger1 = time = 300
+value = 5050
+
+

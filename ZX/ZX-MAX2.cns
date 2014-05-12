@@ -1,0 +1,401 @@
+;-----------------------------------------------------------------------
+;演出
+;-----------------------------------------------------------------------
+;エフェクト
+[Statedef 35000]
+type    = A
+movetype= I
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 6021
+sprpriority = 3
+facep2 = 1
+
+;[State 3100, 3]
+;type = SuperPause
+;trigger1 = Time = 1
+;anim = s6001
+;pos = -19,-79
+;time = 30
+;sound = s10,0
+
+[State 3100,AssertSpecial]
+type = AssertSpecial
+trigger1 = Time >= 0
+trigger1 = Time <= 30
+flag = NoFG
+flag2 = NoBG
+;ignorehitpause = 1
+
+[State 1000, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1
+value = S10,0
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6020
+scale = 1, 1
+postype = p1
+pos = 0,0
+sprpriority = 0
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6022
+scale = 1, 1
+postype = p1
+pos = 0,0
+sprpriority = -1
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+ignorehitpause = 0
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6040
+scale = 0.5, 0.5
+postype = back
+pos = 0, 75
+sprpriority = 3
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 220]
+type = Explod
+trigger1 = time = 1
+anim = 6060
+scale = 0.5, 0.5
+postype = back
+pos = 0, 75
+sprpriority = 4
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 2000,7]
+type = DestroySelf
+trigger1 = Time = 30
+
+;-----------------------------------------------------------------------
+;MAX2超必殺技
+;-----------------------------------------------------------------------
+;虚空･羅刹
+[Statedef 3500]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 3500
+sprpriority = 2
+facep2 = 1
+
+[State 190]
+type = poweradd
+triggerall = var(56) != 1
+trigger1 = Time = 1
+value = -3000
+
+[State 190]
+type = poweradd
+triggerall = var(56) = 1
+trigger1 = Time = 1
+value = -2000
+
+[State 20000]
+type = Helper
+trigger1 = time = 2
+persistent = 0
+id = 35000
+name = "Hiper"
+pos = 10,-71
+postype = P1
+stateno = 35000
+helpertype = normal
+supermove = 1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+supermovetime = 99999
+pausemovetime = 99999
+size.xscale = 1
+size.yscale = 1
+
+[State 220]
+type = Explod
+trigger1 = time = 2
+anim = 6050
+scale = 1, 1
+postype = left
+removetime = -1
+pos = 0, 0
+sprpriority = 0
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+SuperMoveTime  = 9999
+PauseMoveTime  = 9999
+
+[State 128, ヒット定義3]
+type = NotHitBy 
+trigger1 = time = [0,5]
+value = SAC, NT, ST, HT ,NA, SA, HA ,NP, SP, HP 
+;time = 13
+
+[State 500,5];タイムストップ
+type = Pause
+trigger1 = time = 2
+time = 30
+;movetime = 30
+
+[State 2000]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 1000, 6
+
+[State 2000]
+type = PosSet
+trigger1 = facing = 1
+trigger1 = AnimElem = 4
+x = 325
+y = -100
+
+[State 2000]
+type = PosSet
+trigger1 = facing = -1
+trigger1 = AnimElem = 4
+x = -325
+y = -100
+
+[State 2000]
+type = screenbound
+trigger1 = time > 5
+trigger1 = 1
+value = 1
+movecamera = 0
+
+[State 2000, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3501
+
+;-----------------------------------------------------------------------
+;
+[Statedef 3501]
+type    = A
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 3501
+sprpriority = 4
+facep2 = 0
+
+[State 2001]
+type = screenbound
+trigger1 = 1
+value = 1
+movecamera = 0
+
+[State 2001]
+type = envshake
+trigger1 = AnimElem = 1
+time = 12
+freq = 130
+ampl = 7
+phase = 140
+
+[State 2001]
+type = PosSet
+trigger1 = AnimElem = 5
+x = EnemyNear,Pos X
+y = (P2dist Y)-290
+
+[State 2001]
+type = ChangeState
+Trigger1 = AnimTime = 0
+value = 3502
+
+;-------------------------------
+;虚空･羅刹(落下)
+[Statedef 3502]
+type    = A
+movetype= A
+physics = N
+juggle  = 4
+velset = 0,5
+anim = 3502
+ctrl = 0
+sprpriority = 2
+
+[State 2002]
+type = VelAdd
+trigger1 =  1
+trigger1 = pos Y <= -7
+y = 2
+
+[State 2002]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1000, 6
+
+[State 2002]
+type = VelSet
+trigger1 = pos Y >= -10 && Vel Y >= 0
+y = 0
+
+[State 2002]
+type = VelSet
+trigger1 = pos Y >= -10 && Vel Y >= 0
+x = 0
+
+[State 2002]
+type = screenbound
+trigger1 = 1
+value = 1
+movecamera = 200
+
+[State 2002]
+type = ChangeState
+trigger1 = pos Y >= -10 && Vel Y >= 0
+value = 3510
+
+;-----------------------------------------------------------------------
+;虚空･羅刹(フィニッシュ)
+[Statedef 3510]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 3510
+sprpriority = -1
+facep2 = 0
+
+[State 3103, 音を鳴らす]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1000,3
+
+[State 3103, 速度加算];停止用予備
+type = PosSet
+trigger1 =  time = 0
+y = 0
+
+[State 3103, 速度加算];停止用予備
+type = VelSet
+trigger1 =  time = 0
+y = 0
+
+[State 3103, 速度加算];停止用予備
+type = VelSet
+trigger1 =  time = 0
+x = 0
+
+[State 3103, 震動];揺れ 
+type = envshake
+trigger1 = AnimElem = 1
+time = 12
+freq = 130
+ampl = 20
+phase = 140
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 1
+attr = S, HA
+damage = 480,15
+animtype = Back
+guardflag = 
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 0,0
+guard.pausetime = 0,0
+sparkxy = -20, -20
+;hitsound   = s1000,3
+guardsound = 6,0
+sparkno = 3
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -1,-10
+airguard.velocity = -5,-1
+air.type = High
+air.velocity = -1,-8
+air.hittime = 14
+getpower = 0,0
+air.fall = 1
+fall.recover = 0
+fall = 1
+palfx.time = 60
+palfx.add = 200,50,10
+palfx.sinadd = 100,50,10,15
+palfx.invertall = 1
+
+[State 220]
+type = Explod
+trigger1 = AnimElem = 1
+anim = 3515
+scale = 1.5, 1.5
+postype = p1
+pos = 0, 0
+sprpriority = 4
+ownpal = 1
+bindtime = 1
+removeongethit = 1
+ignorehitpause = 0
+
+[State 220]
+type = RemoveExplod
+trigger1 = time = 27
+anim = 6050
+
+[State 220]
+type = Explod
+trigger1 = time = 27
+anim = 6051
+scale = 1, 1
+postype = left
+pos = 0, 0
+sprpriority = 0
+ownpal = 1
+bindtime = -1
+removeongethit = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 27
+value = 10, 3
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+

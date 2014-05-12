@@ -1,0 +1,880 @@
+;-----------------------------------------------------------------------
+;通常攻撃
+;-----------------------------------------------------------------------
+;立ち弱パンチ
+[Statedef 200]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 200
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 1
+value = 2, 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 2
+attr = S, NA
+damage = 20,0
+animtype = High
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5,2
+sparkxy = -10, -91
+hitsound   = s1,4
+guardsound = 6,0
+sparkno = 1
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+airguard.velocity = -2,-5
+air.velocity = -2,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 35,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;立ち強パンチ
+[Statedef 210]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 210
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 11
+value = 2, 2
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 12
+attr = S, NA
+damage = 65,5
+animtype = High
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 20,25
+sparkxy = -10, -60
+hitsound   = s1,5
+guardsound = 6,0
+sparkno = 2
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -7,0
+airguard.velocity = -7,-2
+air.velocity = -7,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 70,35
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;立ち弱キック
+[Statedef 220]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 220
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 2
+value = 2, 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 3
+attr = S, NA
+damage = 20,0
+animtype = High
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5,8
+sparkxy = -10, -59
+hitsound   = s1,6
+guardsound = 6,0
+sparkno = 0
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+airguard.velocity = -2,-5
+air.velocity = -3,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 35,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;立ち強キック
+[Statedef 230]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 230
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 2, 2
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 7
+attr = S, NA
+damage = 60,10
+animtype = High
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10,15
+sparkxy = -10, -61
+hitsound   = s1,7
+guardsound = 6,0
+sparkno = 1
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+airguard.velocity = -5,-2
+air.velocity = -2,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 70,35
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;しゃがみ弱パンチ
+[Statedef 400]
+type    = C
+movetype= A
+physics = C
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 400
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 2
+value = 2, 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 2
+attr = S, NA
+damage = 20,0
+animtype = High
+guardflag = M
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5,2
+sparkxy = -10, -53
+hitsound   = s1,4
+guardsound = 6,0
+sparkno = 1
+guard.sparkno = 40
+ground.type = low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+airguard.velocity = -2,-5
+air.velocity = -2,-3
+air.type = low
+air.velocity = 0,0
+air.hittime = 14
+getpower = 35,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;しゃがみ強パンチ
+[Statedef 410]
+type    = C
+movetype= A
+physics = C
+juggle  = 1
+velset = 0,0
+poweradd= 70
+ctrl = 0
+anim = 410
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 5
+value = 2, 2
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 6
+attr = S, NA
+damage = 70,0
+animtype = High
+guardflag = M
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10,12
+sparkxy = -10, -89
+hitsound   = s1,5
+guardsound = 6,0
+sparkno = 2
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+airguard.velocity = -2,-5
+air.velocity = -2,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 65,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;立ち弱キック
+[Statedef 420]
+type    = C
+movetype= A
+physics = C
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 420
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = time = 4
+value = 2, 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 4
+attr = C, NA
+damage = 30,0
+animtype = High
+guardflag = L
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5,8
+sparkxy = -20, -27
+hitsound   = s1,6
+guardsound = 6,0
+sparkno = 0
+guard.sparkno = 40
+ground.type = low
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,0
+airguard.velocity = -2,-5
+air.velocity = -3,-3
+air.type = low
+air.velocity = 0,0
+air.hittime = 14
+getpower = 35,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;しゃがみ強キック
+[Statedef 430]
+type    = C
+movetype= A
+physics = C
+juggle  = 1
+velset = 0,0
+poweradd= 70
+ctrl = 0
+anim = 430
+sprpriority = 2
+facep2 = 1
+
+[State 200]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 2, 2
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 7
+attr = C, NA
+damage    = 65,5
+hitflag = MAF
+guardflag = L
+pausetime = 10,15
+guard.pausetime = 3,5
+sparkno = 1
+guard.sparkno = 40
+sparkxy = -10, -20
+hitsound   = s1,7
+guardsound = 6,0
+ground.type = Trip
+ground.slidetime = 10
+ground.hittime  = 15
+ground.velocity = -1.5,-2.7
+air.velocity = -1.2,-3
+guard.velocity = -6
+fall.recover = 0
+fall = 1
+down.bounce = 0
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;空中弱キック
+[Statedef 620]
+type    = A
+movetype= A
+physics = A
+juggle  = 1
+poweradd= 0
+ctrl = 0
+anim = 600
+sprpriority = 2
+facep2 = 0
+
+[State 200]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 2, 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 1
+attr = A, NA
+damage = 20,0
+animtype = High
+guardflag = HA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 8,12
+sparkxy = -10, -70
+hitsound   = s1,6
+guardsound = 6,0
+sparkno = 0
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,0
+airguard.velocity = -2,-5
+air.velocity = -2,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 35,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 49
+
+;-----------------------------------------------------------------------
+;空中強キック
+[Statedef 630]
+type    = A
+movetype= A
+physics = A
+juggle  = 1
+poweradd= 0
+ctrl = 0
+anim = 600
+sprpriority = 2
+facep2 = 0
+
+[State 200]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 2, 1
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 1
+attr = A, NA
+damage = 65,5
+animtype = High
+guardflag = HA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 8,10
+sparkxy = -10, -32
+hitsound   = s1,7
+guardsound = 6,0
+sparkno = 1
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -2,0
+airguard.velocity = -2,-5
+air.velocity = -2,-5
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 70,20
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 49
+
+;-----------------------------------------------------------------------
+;空中ふっとばし
+[Statedef 810]
+type    = A
+movetype= A
+physics = A
+juggle  = 1
+poweradd= 0
+ctrl = 0
+anim = 810
+sprpriority = 2
+facep2 = 0
+
+[State 200]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 2, 0
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 3
+attr = A, NA
+damage = 83,5
+animtype = High
+guardflag = HA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10,10
+sparkxy = -10, -32
+hitsound   = s1,2
+guardsound = 6,0
+sparkno = 3
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -8,-3
+airguard.velocity = -8,-5
+air.velocity = -8,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 80,40
+fall.recover = 0
+fall = 1
+down.bounce = 1
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 49
+
+;-----------------------------------------------------------------------
+;カウンター空中ふっとばし
+[Statedef 815]
+type    = A
+movetype= A
+physics = A
+juggle  = 1
+poweradd= 0
+velset = 3,-4
+ctrl = 0
+anim = 810
+sprpriority = 2
+facep2 = 0
+
+[State 700,]
+type = Poweradd
+triggerall = time = 0
+trigger1 = prevstateno = 150
+trigger2 = prevstateno = 151
+value = -1000
+
+[State 700,];点滅
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = 150
+trigger2 = prevstateno = 151
+time = 5
+add = 230,230,230
+
+[State 30]
+type = HitBy  ;特定の攻撃以外食らわない
+trigger1 = 1
+value = SCA
+;立ち、屈み、空中、通常なげ、必殺なげ、超必殺なげ
+
+[State 200]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 2, 0
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 3
+attr = A, NA
+damage = 83,5
+animtype = High
+guardflag = HA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 10,10
+sparkxy = -10, -32
+hitsound   = s1,2
+guardsound = 6,0
+sparkno = 3
+guard.sparkno = 40
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -8,-3
+airguard.velocity = -8,-5
+air.velocity = -8,-3
+air.type = High
+air.velocity = 0,0
+air.hittime = 14
+getpower = 80,40
+fall.recover = 0
+fall = 1
+down.bounce = 1
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 49
+
+;------------------------------------------------------------------
+;投げ
+;------------------------------------------------------------------
+;立ち強パンチ
+[Statedef 900]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 900
+sprpriority = 2
+facep2 = 1
+
+[State 800, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+numhits = 0
+hitflag = M-
+getpower = 0
+pausetime = 0,20
+priority = 3, Miss
+hitsound   = s1,3
+sparkno = 2
+p1sprpriority = 1
+p2sprpriority = 0
+p1facing = 1
+p2facing = 1
+p1stateno = 905
+p2stateno = 906
+guard.dist = 0
+fall = 1
+fall.recover = 0
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 210
+
+;--------------------------------
+;投げ成功モーション
+[Statedef 905]
+type    = S
+movetype= A
+physics = S
+anim = 905
+sprpriority = 1
+
+[State 851, 捕獲 1]
+type = TargetBind
+trigger1 = time < 11
+pos = 32, 0
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 17
+attr = S, NA
+damage = 105,5
+animtype = High
+guardflag = 
+hitflag = MAF
+priority = 3, Hit
+pausetime = 0,0
+sparkxy = -10, -76
+hitsound   = s1,2
+;guardsound = 6,0
+sparkno = 3
+guard.sparkno = -1
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,-2
+airguard.velocity = -5,-2
+air.velocity = -5,-2
+air.type = High
+air.hittime = 14
+getpower = 75,25
+fall = 1
+fall.recover = 0
+
+[State 810, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;(喰らい)
+[Statedef 906]
+type    = U
+movetype= H
+physics = U
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+sprpriority = 2
+
+[State 820, 相手のアニメ変更]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 906
+
+[State 905, 相手ステートに戻す]
+type = SelfState
+trigger1 = time = 27
+value = 5110
+
+;------------------------------------------------------------------
+;立ち強キック
+[Statedef 910]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+anim = 910
+sprpriority = 2
+facep2 = 1
+
+[State 800, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+numhits = 0
+hitflag = M-
+getpower = 0
+pausetime = 0,20
+priority = 3, Miss
+hitsound   = s1,3
+sparkno = 2
+p1sprpriority = 1
+p2sprpriority = 0
+p1facing = 1
+p2facing = 1
+p1stateno = 915
+p2stateno = 916
+guard.dist = 0
+fall = 1
+fall.recover = 0
+
+[State 300, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 230
+
+;--------------------------------
+;投げ成功モーション
+[Statedef 915]
+type    = S
+movetype= A
+physics = S
+anim = 915
+sprpriority = 1
+
+[State 5210, 2] 
+type = Turn
+trigger1 = AnimElem = 1
+
+[State 851, 捕獲 1]
+type = TargetBind
+trigger1 = time < 4
+pos = -52, -107
+
+[State 851, 捕獲 1]
+type = TargetBind
+trigger1 = time >=4
+trigger1 = time < 10
+pos = -43, -117
+
+[State 851, 捕獲 1]
+type = TargetBind
+trigger1 = time >= 10
+trigger1 = time < 13
+pos = -11, -133
+
+[State 851, 捕獲 1]
+type = TargetBind
+trigger1 = time >= 13
+trigger1 = time < 15
+pos = 26, -103
+
+[State 851, 捕獲 1]
+type = TargetBind
+trigger1 = time = 16
+pos = 35, -28
+
+[State 300, ヒット定義]
+type = HitDef
+trigger1 = time = 17
+attr = S, NA
+damage = 105,5
+animtype = High
+guardflag = 
+hitflag = MAF
+priority = 3, Hit
+pausetime = 0,0
+sparkxy = -10, -76
+hitsound   = s1,2
+;guardsound = 6,0
+sparkno = 3
+guard.sparkno = -1
+ground.type = High
+ground.slidetime = 20
+ground.hittime  = 20
+ground.velocity = -5,10
+airguard.velocity = -5,10
+air.velocity = -5,10
+air.type = High
+air.hittime = 14
+getpower = 75,25
+down.bounce = 1
+fall = 1
+fall.recover = 0
+
+[State 810, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;-----------------------------------------------------------------------
+;(喰らい)
+[Statedef 916]
+type    = U
+movetype= H
+physics = U
+juggle  = 1
+velset = 0,0
+poweradd= 0
+ctrl = 0
+sprpriority = 2
+
+[State 820, 相手のアニメ変更]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 916
+
+[State 905, 相手ステートに戻す]
+type = SelfState
+trigger1 = time = 27
+value = 5110
+

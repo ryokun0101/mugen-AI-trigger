@@ -1,0 +1,442 @@
+;基本データ部分
+[Data]
+life              = 1100
+power             = 4000
+attack            = 100
+defence           = 100
+fall.defence_up   = 50
+liedown.time      = 60
+airjuggle         = 15
+sparkno           = 2
+guard.sparkno     = 40
+KO.echo           = 0
+volume            = 128
+intpersistindex   = 20
+floatpersistindex = 40
+
+;---------------------------------------------------------------------------
+;サイズ設定
+[Size]
+xscale           = 1
+yscale           = 1
+ground.back      = 15
+ground.front     = 16
+air.back         = 12
+air.front        = 12
+height           = 60
+attack.dist      = 160
+proj.attack.dist = 90
+proj.doscale     = 0
+head.pos         = 9, -108
+mid.pos          = 13, -77
+shadowoffset     = 0
+draw.offset      = 0,0
+
+;---------------------------------------------------------------------------
+;移動速度設定
+[Velocity]
+walk.fwd     = 2.0
+walk.back    = -1.5
+run.fwd      = 5.0, 0
+run.back     = -4.0,-2.8
+jump.neu     = 0,-8.5
+jump.back    = -2.5,0.5
+jump.fwd     = 2.5,0.5
+runjump.back = -2.55,-8.1
+runjump.fwd  = 4,-8.1
+airjump.neu  = 0,-8.1
+airjump.back = -2.5
+airjump.fwd  = 2.55
+
+;---------------------------------------------------------------------------
+;動作設定
+[Movement]
+airjump.num     = 0
+airjump.height  = 35
+yaccel          = .5
+stand.friction  = .85
+crouch.friction = .82
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+; 基本行動のステート
+;---------------------------------------------------------------------------
+; タイムオーバー時
+; CNS レベル: 基本
+
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 170
+velset = 0,0
+
+[State 170, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+[Statedef 180]
+type = S
+
+
+[State 180]
+type = ChangeState
+triggerall = RoundState != 0
+trigger1 = (PrevStateNo = 4012) 
+value = 182
+
+[State 180]
+type = ChangeState
+triggerall = RoundState != 0
+trigger1 = Time = 0
+;trigger1 = MatchOver = 1
+value = 181
+
+;---------------------------------------------------------------------------
+; 勝利ポーズ
+; CNS レベル: 基本
+
+[Statedef 181]
+type = S
+ctrl = 0
+anim = 181
+velset = 0,0
+
+[State 181]
+type = PlaySnd
+trigger1 = Time = 0
+value = s181, 0+(Random % 4)
+channel = 0
+
+[State 191, Intro]
+type = AssertSpecial
+trigger1 = time = [0,380]
+flag = roundnotover
+
+[State 181, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;---------------------------------------------------------------------------
+; 勝利ポーズ(悪滅専用勝利演出)
+;---------------------------------------------------------------------------
+[Statedef 182]
+type = S
+ctrl = 0
+velset = 0,0
+
+[State 191, Intro]
+type = AssertSpecial
+trigger1 = time = [0,380]
+flag = roundnotover
+
+[State 181, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+;===========================================================================
+;イントロ分岐
+;===========================================================================
+[Statedef 190]
+type = S
+ctrl = 0
+anim = 0
+velset = 0,0
+
+[State 190]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = PalNo = [7,12]
+value = 192
+
+[State 190]
+type = ChangeState
+trigger1 = Time = 0
+trigger1 = PalNo != [7,12]
+value = 191
+
+
+;===========================================================================
+;通常イントロ
+;===========================================================================
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 190
+poweradd= 500
+velset = 0,0
+
+[State 191, 特殊効果] 
+type = AssertSpecial
+trigger1 = Time =  [0,500]
+flag = Intro 
+
+[State 181]
+type = PlaySnd
+trigger1 = Time = 0
+value = s190, 0
+channel = 0
+
+[State 191]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;===========================================================================
+;通常イントロ(ボスモード専用)
+;===========================================================================
+[Statedef 192]
+type = S
+ctrl = 0
+anim = 190
+velset = 0,0
+
+[State 191, 特殊効果] 
+type = AssertSpecial
+trigger1 = Time =  [0,500]
+flag = Intro 
+
+[State 181]
+type = PlaySnd
+trigger1 = Time = 0
+value = s190, 0
+channel = 0
+
+[State 191]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+
+;----------------------------------------------------------------------------
+;ヘルパー
+;(HELPER)ゲージ
+[Statedef 7500]
+type = A
+ctrl = 0
+anim = 8000
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 10
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+;---------------------[透過]
+[state a]
+type = null;Trans
+trigger1 = 1
+trans = addalpha
+alpha = 256, 256
+
+;---------------------[]
+[state -2,a];ゲージ枠a
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = 1
+trigger1 = numexplod(7501) = 0
+anim = 7501
+id = 7501
+postype = back
+bindtime = -1
+pos = 36,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ゲージ枠a
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = -1
+trigger1 = numexplod(7501) = 0
+anim = 7501
+id = 7501
+postype = back
+bindtime = -1
+pos = 36,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+facing = 1
+ontop = 1
+
+[state -2,a];ゲージ枠b
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = 1
+trigger1 = numexplod(7502) = 0
+anim = 7502
+id = 7502
+postype = back
+bindtime = -1
+pos = 36,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+ontop = 1
+trans = addalpha
+alpha = 250,130
+
+[state -2,a];ゲージ枠b
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = -1
+trigger1 = numexplod(7502) = 0
+anim = 7502
+id = 7502
+postype = back
+bindtime = -1
+pos = 36,230
+sprpriority = 98
+removetime = -1
+ownpal = 1
+facing = 1
+ontop = 1
+trans = addalpha
+alpha = 250,130
+
+[state a]
+type = removeexplod
+trigger1 = RoundState > 2
+id = 7501
+
+[state a]
+type = removeexplod
+trigger1 = RoundState > 2
+id = 7502
+
+;---------------------[ゲージ量]
+[state -2,a];ゲージ量
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = 1
+trigger1 = power < 4000;numexplod(7520) = 0
+anim = 7520+floor(power*0.002)
+id = 7520
+postype = left
+bindtime = -1
+pos = 36,230
+sprpriority = 97
+;removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ゲージ量
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = -1
+trigger1 = power < 4000;numexplod(7520) = 0
+anim = 7520+ floor(power*0.002)
+id = 7520
+postype = right
+bindtime = -1
+pos = -36,230
+sprpriority = 97
+;removetime = -1
+ownpal = 1
+facing = -1
+ontop = 1
+
+[state a]
+type = removeexplod
+trigger1 = RoundState > 2
+id = 7520
+
+[state -2,a];MAX
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = 1
+trigger1 = power >= 4000
+trigger1 = numexplod(7525) = 0
+anim = 7528
+id = 7525
+postype = left
+bindtime = -1
+pos = 36,230
+sprpriority = 97
+removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];MAX
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = -1
+trigger1 = power >= 4000
+trigger1 = numexplod(7525) = 0
+anim = 7529
+id = 7525
+postype = right
+bindtime = -1
+pos = -36,230
+sprpriority = 97
+removetime = -1
+ownpal = 1
+facing = -1
+ontop = 1
+
+[state a]
+type = removeexplod
+trigger1 = power < 4000
+id = 7525
+
+[state a]
+type = removeexplod
+trigger1 = RoundState > 2
+id = 7525
+
+[state a]
+type = ModifyExplod
+trigger1 = 1
+ID = 7520
+scale = power * 0.002 - floor(power*0.002),1
+
+
+[state -2,a];ゲージ数
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = 1
+anim = 7510+floor(power*0.002)
+id = 7510
+postype = back
+bindtime = -1
+pos = 17,230
+sprpriority = 97
+;removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ゲージ数
+type = Explod
+triggerall = RoundState <= 2
+trigger1 = Facing = -1
+anim = 7510+floor(power*0.002)
+id = 7510
+postype = back
+bindtime = -1
+pos = 16,230
+sprpriority = 97
+;removetime = -1
+facing = -1
+ownpal = 1
+ontop = 1
+
+[state a]
+type = removeexplod
+trigger1 = RoundState > 2
+id = 7510
+
+
+
+
+
