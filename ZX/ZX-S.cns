@@ -141,7 +141,7 @@ value = 2, 2
 type = poweradd
 triggerall = var(56) != 1
 trigger1 = Time = 1
-value = -1000
+value = -500
 
 [State 0, 2]
 type = VelSet
@@ -772,7 +772,6 @@ anim = 1200
 
 [State 190]
 type = poweradd
-triggerall = PalNo != [7,12]
 triggerall = var(56) != 1
 trigger1 = Time = 1
 value = -1000
