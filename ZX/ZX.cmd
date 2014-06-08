@@ -533,10 +533,161 @@ type = VarSet
 trigger1 = 1
 var(59) = 1
 
+[state -1,yaccel]
+type = varset
+trigger1 = fvar(20) != enemynear,const(movement.yaccel)
+trigger1 = enemynear,stateno != [5000,5210]
+trigger1 = enemynear,vel y != 0
+fv = 20
+value = enemynear,const(movement.yaccel)
+ignorehitpause = 1
+
+[state -1,yaccel1]
+type = varset
+trigger1 = fvar(20) != enemynear,gethitvar(yaccel)
+trigger1 = enemynear,stateno = [5000,5210]
+trigger1 = enemynear,vel y != 0
+fv = 20
+value = enemynear,gethitvar(yaccel)
+ignorehitpause = 1
+
+[state -1, yaccel2]
+type = varset
+trigger1 = fvar(20) != 0
+trigger1 = enemynear,vel y = 0
+fv = 20
+value = 0
+ignorehitpause = 1
+[State -1]
+type = DisplayToClipboard
+trigger1 = 1
+text = "%d %d %d %d"
+params = var(59), p2dist X, p2dist Y, p2bodydist X
+
+[State -1, zero sanslash]
+type = ChangeState
+value = 2000
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ifelse((PalNo = [7,12]), power >= 1000, power >= 2000)
+triggerall = statetype != A
+triggerall = movehit
+triggerall = p2dist X < 41
+trigger1 = stateno = [200,430]
+trigger2 = stateno = 1400
+trigger2 = time < 10
+trigger3 = stateno = 1060
+trigger3 = time < 10
+
+[State -1, charge freeman slash]
+type = ChangeState
+value = 2100
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = !(enemynear, stateno = [120, 159])
+triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+triggerall = ifelse((PalNo = [7,12]), power >= 1000, power >= 2000)
+Trigger1 = p2dist y < -130-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+trigger1 = p2bodydist X < 97 + 30*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = p2movetype = I
+trigger1 = enemynear, fvar(20) > -1
+
+[State -1, counter]
+type = ChangeState
+value = 2200
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ifelse((PalNo = [7,12]), power >= 1000, power >= 2000)
+triggerall = statetype != A
+trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101]) || (Stateno = [120,131])
+trigger1 = enemynear, movetype = A
+trigger1 = enemynear, hitdefattr = SCA, AA
+trigger1 = p2dist X < 60
+trigger1 = enemynear, time > 0
+trigger1 = enemynear, animtime != 0
+trigger2 = power >= 2750
+trigger2 = stateno = 1400
+trigger2 = moveguarded
+trigger2 = enemynear, ctrl = 1
+trigger2 = ifelse(enemynear, hitshakeover && enemynear, time > 10, random % 10 < 2, random % 10 = 4)
+
+[State -1, ling fullscreen]
+type = ChangeState
+value = 2300	
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ifelse((PalNo = [7,12]), power >= 1000, power >= 2000)
+triggerall = statetype != A
+trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+trigger1 = enemynear, animtime < -25
+trigger1 = enemynear, movetype = A
+trigger1 = enemynear, statetype != A
+
+[State -1, zero fullscreen]
+type = ChangeState
+value = 3200
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ifelse((PalNo = [7,12]), power >= 2000, power >= 3000)
+triggerall = statetype != A
+trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+trigger1 = enemynear, animtime < -21
+trigger1 = enemynear, movetype = A
+trigger1 = enemynear, statetype != A
+
+[State -1, san round slash]
+type = ChangeState
+value = 3000	
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = ifelse((PalNo = [7,12]), power >= 2000, power >= 3000)
+triggerall = power >= 5700 || (life - 300 > enemynear, life && life > 500)
+trigger1 = stateno = 1400
+trigger1 = movehit
+trigger1 = time < 10
+trigger2 = stateno = 1060
+trigger2 = movehit
+trigger2 = time < 10
+
+[State -1, misogi]
+type = ChangeState
+value = 3500
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = ifelse((palno = [7, 12]), power >= 2000, power >= 3000)
+Triggerall = Life <= .800*LifeMax
+trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+trigger1 = enemynear, animtime < -30 || enemynear, statetype = A
+trigger1 = p2bodydist X = [1, 70]
+trigger1 = enemynear, movetype = A
+trigger1 = abs(enemynear, vel X) < 1
+trigger1 = ifelse(enemynear, statetype = A, p2dist Y < -70, 1)
+
+[State -1, full counter]
+type = ChangeState
+value = 4000
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ifelse((palno = [7,12]), power >= 3000, power >= 4000)
+Triggerall = Life <= .300*LifeMax
+triggerall = statetype != A
+trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+trigger1 = enemynear, movetype = A && inguarddist
+trigger1 = enemynear, hitdefattr = SCA, AA
+trigger1 = p2dist X < 60
+trigger1 = enemynear, animtime < -20
+trigger2 = stateno = 1400
+trigger2 = moveguarded
+trigger2 = enemynear, ctrl = 1
+trigger2 = ifelse(enemynear, hitshakeover && enemynear, time > 10, random % 20 < 2, random % 20 = 14)
+
 [State -1, Guard]
 type = ChangeState
 value = 120
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
 triggerall = !(enemynear, hitdefattr = SCA, AT)
@@ -549,7 +700,7 @@ trigger2 = enemynear, numproj || enemynear, numhelper
 [State -1, crouching hard kick]
 type = ChangeState
 value = 430
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != L
@@ -566,8 +717,8 @@ trigger2 = random % 3 = 0
 
 [State -1, crouching light kick]
 type = ChangeState
-value = 420
-triggerall = 000 + 1
+value = ifelse((abs(p2dist X) - ifelse(enemynear, backedgedist < 58, 10, 0) = [55, 65])||((abs(p2dist X) - ifelse(enemynear, backedgedist < 58, 10, 0) = [80, 85]) && enemynear, time > 20), ifelse(random % 100 < 40, 220, 420), 420)
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != L
@@ -576,15 +727,17 @@ triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
 triggerall = enemynear, numproj = 0
-triggerall = p2dist X > 27
-triggerall = p2dist X < 90 + 7*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+triggerall = p2dist X  - ifelse(enemynear, backedgedist < 58, 10,0) > 42 - random % 4
+triggerall = p2dist X  - ifelse(enemynear, backedgedist < 58, 10,0) < 78 + 7*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 triggerall = random > 200
-trigger1 = enemynear, animtime > -10 - random % 4 || (p2movetype != A && p2stateno != 131 && p2stateno != 141 && p2stateno != 151) || (enemynear, inguarddist && enemynear, moveguarded = 0)
+triggerall = (!(p2stateno = [120, 159]) && enemynear, vel X = 0) || (enemynear, moveguarded = 0)
+trigger1 = (p2stateno != 131 && p2stateno != 141 && p2stateno != 151)
+trigger2 = (p2statetype = S && enemynear, time > 10 && enemynear, time < 15 && random % 5 = 0)
 
 [State -1, standing light kick]
 type = ChangeState
-value = ifelse(random > 550, 220, 420)
-triggerall = 000 + 1
+value = ifelse(prevstateno = 220 || p2dist X > 65, 420, 220)
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != L
@@ -596,44 +749,64 @@ triggerall = !(p2stateno = [5050, 5299])
 triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
 triggerall = !(enemynear, hitdefattr = SCA, HA, HT, HP)
 triggerall = enemynear, numproj = 0
-triggerall = enemynear, movetype != A || enemynear, animtime < -35
-trigerall = p2dist X < 80
+triggerall = (enemynear, movetype != A && enemynear, time > 14) || ((enemynear, animtime < -13 || enemynear, p2dist X < 0) && enemynear, animtime > -30)
+triggerall = abs(p2dist X) - ifelse(enemynear, backedgedist < 58, 10, 0) = [40, 92]
 triggerall = !(enemynear, inguarddist && enemynear, moveguarded = 0)
-trigger1 = enemynear, animtime > -15
 trigger1 = random % 3 = 0
 
 [State -1, crouching light punch]
 type = ChangeState
 value = 400
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != L
-triggerall = p2statetype != A
 triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
 triggerall = enemynear, numproj = 0
-triggerall = p2dist X <= 27
-triggerall = random > 200
-trigger1 = enemynear, animtime > -10 - random % 4 || (p2movetype != A && p2stateno != 131 && p2stateno != 141 && p2stateno != 151) || (enemynear, inguarddist && enemynear, moveguarded = 0)
+triggerall = p2dist X <= 43 + random % 7
+triggerall = random > 50
+Triggerall = p2dist x >= 8+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = p2statetype != A && (p2stateno != [40,49])
+trigger1 = enemynear, animtime > -4 - random % 3
+trigger1 = (p2movetype = I && enemynear, vel X = 0 && p2stateno != 131 && p2stateno != 141 && p2stateno != 151) || (enemynear, inguarddist && enemynear, moveguarded = 0 && p2statetype = S)
+
+[State -1, crouching hard punch]
+type = ChangeState
+value = ifelse(p2dist y < -29-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10)), ifelse(p2dist y > -44-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10)), 410, 1400), 400)
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = p2statetype != L
+triggerall = !(p2stateno = [800, 899])
+triggerall = !(p2stateno = [5050, 5299])
+triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+triggerall = enemynear, numproj = 0
+triggerall = p2dist X <= 40 + random % 10 || p2statetype = A
+triggerall = random > 50
+Triggerall = p2dist x >= 14+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = p2statetype = A || (p2stateno = [40,49]) || (enemynear, vel Y < 0)
+trigger1 = p2dist x < ifelse(enemynear, vel Y, 50, 38)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger1 = p2dist y < -28-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+Trigger1 = p2dist y > -96-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 
 [State -1, low kick then kick]
 type = ChangeState
 value = 1060	
-triggerall = 000 + 1
-triggerall = var(59) = 1
-triggerall = ifelse((PalNo = [7,12]), 1,  ifelse(life > enemynear, life, power >= 2500, power >= 500 + random % 3000))
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ifelse((PalNo = [7,12]), 1,  ifelse(life > enemynear, life , power >= 4500, power >= 500 + random % 5000))
 triggerall = statetype != A
 triggerall = p2statetype != L
 triggerall = p2statetype != A
 triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = enemynear, numproj = 0
-triggerall = p2dist X < 67 + 7*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+triggerall = p2dist X < 32 + 7*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 trigger1 = random > 200
 trigger1 = p2dist X > 27
-trigger1 = enemynear, animtime > -10 || (p2movetype != A && p2stateno != 131 && p2stateno != 141 && p2stateno != 151)
+trigger1 = (enemynear, animtime > -5 - random % 4 && p2movetype != A) && ((p2stateno != 131 && p2stateno != 141 && p2stateno != 151)) || (enemynear, inguarddist && enemynear, moveguarded = 0 && p2statetype = S)
 trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
 trigger2 = stateno = [200,430]
 trigger2 = (moveguarded && ifelse(enemynear, statetype = S, random > 50, random > 900)) || (movehit && random > 570)
@@ -641,19 +814,26 @@ trigger2 = (moveguarded && ifelse(enemynear, statetype = S, random > 50, random 
 [State -1, down slash cont]
 type = ChangeState
 value = 1400
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = movecontact
 triggerall = enemynear, backedgedist > 48
 trigger1 = stateno = [200,430]
-trigger1 = ifelse(moveguarded, random % 500 > 100, random % 500 < 100)
+trigger1 = ifelse(moveguarded, random % 500 > 495 || enemynear, statetype = A, random % 400 < 200)
 trigger1 = p2dist X < 95
+trigger1 = ifelse(moveguarded, p2dist X > 40, 1)
+trigger2 = enemynear, statetype = A
+trigger2 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
+Trigger2 = p2dist x < 42+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger2 = p2dist x > 0+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger2 = p2dist y < -45-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+Trigger2 = p2dist y > -77-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 
 [State -1, dash defense]
 type = ChangeState
 value = 1100	
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != A
@@ -661,36 +841,37 @@ triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = p2bodydist X > 29
 triggerall = enemynear, backedgedist > 48
-triggerall = ifelse((PalNo = [7,12]), 1, power >= 500 + ifelse(life > enemynear, life, ifelse(random % 10 > 5, 3500, random % 3000), random % 3000))
+triggerall = ifelse((PalNo = [7,12]), 1, power >= 500 + ifelse(life > enemynear, life, ifelse(random % 30 > 5, 3500, random % 3000), random % 5000))
 trigger1 = p2statetype != L
 ;trigger1 = (p2dist X < 75)
 trigger1 = (p2dist X < 75)
 trigger1 = stateno = [200,430]
 trigger1 = (moveguarded && random % 100 > 60)
-trigger2 = enemynear, ctrl = 1
+trigger1 = random > 900 || ((random % 2 = 0) && enemynear, ctrl = 1 || enemynear, hitshakeover && enemynear, time > 10)
 trigger2 = p2statetype != L
 ;trigger2 = (p2dist X < 70)
-trigger1 = (p2dist X < 75)
+trigger2 = (p2dist X < 75)
 trigger2 = stateno = 1400
 trigger2 = (moveguarded && random % 100 > 10)
-trigger2 = enemynear, ctrl = 1
+trigger2 = random > 900 || ((random % 2 = 0) && enemynear, ctrl = 1 || enemynear, hitshakeover && enemynear, time > 10)
 trigger3 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
 trigger3 = p2statetype != L
-trigger3 = enemynear, animtime < -7
 trigger3 = p2dist X < 58
-trigger3 = frontedgedist > 205 || enemynear, animtime < -40
+trigger3 = frontedgedist > 205 || enemynear, animtime < -30
+trigger3 = inguarddist
+trigger3 = enemy, numproj > 0
 
 [State -1, dash offense]
 type = ChangeState
 value = ifelse(random % 100 > 96, 1150, 1100)
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != A
 triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
-triggerall = ifelse((PalNo = [7,12]), 1, power >= 500 + ifelse(life > enemynear, life, ifelse(random % 10 > 5, 3500, random % 3000), random % 3000))
+triggerall = ifelse((PalNo = [7,12]), 1, power >= 500 + ifelse(life > enemynear, life, ifelse(random % 30 > 5, 3500, random % 3000), random % 5000))
 trigger1 = p2statetype != L
 trigger1 = p2bodydist X > 123 + random % 100 > 96
 trigger1 = p2dist X = [163, 179]
@@ -701,11 +882,19 @@ trigger2 = enemynear, statetype = L || (enemynear, movetype = H && enemynear, ct
 trigger2 = enemynear, animtime < -15
 trigger2 = p2dist X > 150
 trigger2 = frontedgedist > 205
+trigger3 = p2statetype != L
+trigger3 = (p2dist X < 75)
+trigger3 = stateno = [200,430]
+trigger3 = movehit && (life < enemynear, life || life < 500 || power > 2500)
+trigger4 = p2statetype != L
+trigger4 = (p2dist X < 75)
+trigger4 = stateno = 1400
+trigger4 = movehit && (life < enemynear, life || life < 500 || power > 2500)
 
 [State -1, hook punch]
 type = ChangeState
 value = 1115
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = ifelse((PalNo = [7,12]), 1, power >= 500)
 triggerall = (p2bodydist X < 15 || p2dist X - 15*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1)) < 43)
@@ -720,7 +909,7 @@ trigger2 = time <= 22
 [State -1, counterwirepunch]
 type = ChangeState
 value = 1150
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = ifelse((PalNo = [7,12]), 1, power >= 500)
 triggerall = (p2bodydist X < 15 || p2dist X - 15*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1)) < 48)
@@ -742,23 +931,30 @@ triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = ifelse((PalNo = [7,12]), 1, power >= 2000)
 triggerall = random % 2 = 0
-triggerall = p2dist X < 62
+trigger1 = p2dist X < 35
 trigger1 = stateno = [200,430]
 trigger1 = moveguarded
-trigger1 = power >= 4000
+trigger1 = power >= 6000
+trigger1 = p2dist X < 35
 trigger2 = stateno = 1400
 trigger2 = moveguarded
-trigger2 = power >= 4500
+trigger2 = power >= 7500
 trigger3 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
-trigger3 = ifelse((palno = [7,12]), 1, var(56) <= 12)
+trigger3 = var(58) <= 6
 Trigger3 = p2dist x < 68+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger3 = p2dist x > ifelse(p2movetype = H, 7, 14)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger3 = p2dist y < -48-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+Trigger3 = p2dist x > ifelse(p2movetype = H, 27, 32)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger3 = p2dist y < -45-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 Trigger3 = p2dist y > -70-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+trigger4 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
+trigger4 = p2movetype = A
+trigger4 = p2dist X < 100
+trigger4 = p2dist X > 77
+trigger4 = enemynear, animtime < -25
+trigger4 = enemynear, numproj = 0 || !inguarddist
 
 [State -1, 1 other hand juggle slash]
 type = ChangeState
-value = ifelse(p2dist X > 40 && enemynear, animtime < -13 - p2dist X / 40, 1250, 1200)
+value = 1200
 triggerall = 000 + 1
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
@@ -766,38 +962,60 @@ triggerall = p2statetype != L
 triggerall = !(p2stateno = [800, 899])
 triggerall = !(p2stateno = [5050, 5299])
 triggerall = ifelse((PalNo = [7,12]), 1, power >= 1500)
-trigger1 = p2dist X < 62
+trigger1 = p2dist X < 35
 trigger1 = stateno = [200,430]
 trigger1 = movehit
-trigger1 = p2dist X < 62
+trigger2 = p2dist X < 35
 trigger2 = stateno = 1400
+trigger2 = animtime < -40
 trigger2 = movehit
-trigger1 = p2dist X < 62
+trigger3 = p2dist X < 35
 trigger3 = stateno = 1060
 trigger3 = movehit
+trigger3 = time > 46
 trigger4 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
-trigger4 = ifelse((palno = [7,12]), 1, var(56) <= 12)
+trigger4 = var(58) <= 6
 Trigger4 = p2dist x < 58+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger4 = p2dist x > ifelse(p2movetype = H, 7, 14)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger4 = p2dist y < ifelse(p2movetype = H, -46, -68)-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+Trigger4 = p2dist x > ifelse(p2movetype = H, 17, 28)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger4 = p2dist y < -45-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 Trigger4 = p2dist y > -87-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 
 [State -1, juggle detect]
 type = VarAdd
-triggerall = var(56) = 0
+triggerall = var(58) = 0
 trigger1 = stateno = 1350
 trigger2 = stateno = 1200
 trigger3 = stateno = 1250
-trigger4 = stateno = 1150
-trigger5 = stateno = 1115
 triggerall = movehit
-var(56) = 3
+var(58) = 15
+
+[State -1, juggle detect]
+type = VarAdd
+triggerall = var(58) = 0
+trigger1 = stateno = 1150
+trigger2 = stateno = 1115
+triggerall = movehit
+var(58) = ifelse((palno = [7,12]), 3,6)
+
+[State -1, juggle detect]
+type = Varadd
+triggerall = var(58) = 0
+trigger1 = stateno = 4000
+trigger2 = stateno = 3500
+trigger3 = stateno = 3100
+trigger4 = stateno = 3000
+trigger5 = stateno = 3200
+trigger6 = stateno = 2300
+trigger7 = stateno = 2000
+trigger8 = stateno = 2200
+triggerall = movehit
+var(58) = 15
 
 [State -1, juggle detect]
 type = VarSet
-triggerall = var(56) > 0
+triggerall = var(58) > 0
 trigger1 = enemynear, statetype != A
-var(56) = 0
+var(58) = 0
 
 [State -1, upper slash]
 type = ChangeState
@@ -808,36 +1026,54 @@ triggerall = statetype != A
 triggerall = p2statetype != L
 triggerall = !(p2stateno = [800, 899])
 triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101])
-trigger1 = ifelse((palno = [7,12]), 1, var(56) <= 12)
+trigger1 = var(58) <= 6
 trigger1 = ifelse((PalNo = [7,12]), 1, power >= 1000)
 Trigger1 = p2dist x < 98+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger1 = p2dist x > ifelse(p2movetype = H, 17, 34)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger1 = p2dist y < ifelse(p2movetype = H, -46, -88)-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+Trigger1 = p2dist x > ifelse(p2movetype = H, 40, 44)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger1 = p2dist y < -99-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 Trigger1 = p2dist y > -107-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+trigger1 = p2statetype = A
 Trigger2 = p2dist x < 98+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 Trigger2 = p2dist x > 18+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 trigger2 = p2dist x > 0
-trigger2 = ifelse((PalNo = [7,12]), 1, power >= 1000 && life < enemynear, life || life < 500)
+trigger2 = ifelse((PalNo = [7,12]), 1, power >= 1000 && (life < enemynear, life || life < 500))
 trigger2 = !(enemynear, hitdefattr = SC, AT) && enemynear,animtime <= -16
 trigger2 = enemynear, movetype = A
 trigger2 = enemynear, stateno < 2000 || (enemynear, stateno >= 2000 && enemynear, time > 28)
 
+[State -1, upper slash]
+type = ChangeState
+value = 1300
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = p2statetype != L
+triggerall = !(p2stateno = [800, 899])
+trigger1 = stateno = 1400
+trigger1 = movehit
+trigger1 = time < 10
+trigger1 = power >= 1500
+trigger1 = life < enemynear, life || life < 300
+
 [State -1, sj2]
 Type = ChangeState
 value = 43
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = enemynear,statetype != A
 triggerall = enemynear,statetype != L
-triggerall = stateno = 400 || stateno = 430
-triggerall = p2bodydist x = [-15,15]
+triggerall = ifelse((palno = [7,12]), 1, power >= 1000)
+triggerall = stateno = 420
+triggerall = p2dist x = [97 + ifelse(enemynear, backedgedist < 58, 10,0), 165 - ifelse(enemynear, backedgedist < 58, 10,0)]
 trigger1 = animtime = 0
+trigger1 = moveguarded
+trigger1 = random % 4 > 0
 
 [State -1, sj]
 type = ChangeState
 value = 43
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = enemynear,statetype != L
@@ -847,31 +1083,46 @@ triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101]) || stateno = [1
 triggerall = p2bodydist x <= 90
 trigger1 = random <= 800
 
+[State -1, downward slash]
+type = ChangeState
+value = 1500
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype = A
+triggerall = ifelse((PalNo = [7,12]), 1, power >= 1000)
+triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101]) || (stateno = [120, 149])
+triggerall = enemynear, animtime < -12 && (p2movetype = A && (inguarddist && enemynear, movecontact = 0))
+trigger1 = pos Y -((vel y)+(const(movement.yaccel)*10)) > -48
+trigger1 = p2bodydist X - 15 * vel X - 15*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1)) < 58
+trigger1 = p2dist X - 15 * vel X - 15*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1)) < -7
+
 [State -1,jhk]
 type = ChangeState
-value = 630
-triggerall = 000 + 1
+value = 620
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype = A
 triggerall = ctrl || (stateno = [20,29]) || (stateno = [99,101]) || (stateno = [120, 149])
-triggerall = enemynear, movetype != A || enemynear, movetype = A && enemynear, animtime > -3
-trigger1 = p2dist x = [-37+floor(9*(enemynear,vel x)+9*(vel x)),65+floor(9*(enemynear,vel x)+9*(vel x))]
-trigger1 = p2bodydist y = [-38-floor(9*(enemynear,vel y)+(9*(9+1)/2)*fvar(20)-9*(vel y)-(9*(9+1)/2)*0.55),20-floor(9*(enemynear,vel y)+(9*(9+1)/2)*fvar(20)-9*(vel y)-(9*(9+1)/2)*0.55)]
-trigger1 = ifelse(vel Y < 0, 1, random % 100 > 40)
+triggerall = (enemynear, movetype != A && enemynear, animtime < -15) || (enemynear, movetype = A && enemynear, animtime > -3)
+triggerall = p2stateno != [120,159]
+trigger1 = pos Y <= -31 || p2bodydist X >= 34
+trigger1 = p2dist x - 15 * vel X - 15*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1)) = [-40, 54]
+trigger1 = (abs(p2bodydist y) = [0,31-floor(9*(enemynear,vel y)+(9*(9+1)/2)*fvar(20)-9*(vel y)-(9*(9+1)/2)*0.55)])
+trigger2 = pos Y > -31 && p2bodydist X < 34
 
 [State -1, downward slash]
 type = ChangeState
 value = 1500
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = ifelse((PalNo = [7,12]), 1, power >= 1000)
 trigger1 = stateno = [600,630]
-trigger1 = ifelse(enemynear, statetype != C, 1, random % 500 > 150) 
+trigger1 = movehit || (moveguarded && random % 19 = 0 && p2bodydist X < -5)
 
 [State -1, grab]
 type = ChangeState
 value = ifelse(backedgedist < 150 || random > 960, 910, 900)
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype = S
 triggerall = stateno != 100
@@ -891,7 +1142,7 @@ trigger3 = random < 200
 [State -1, roll fwd]
 type = ChangeState
 value = 700
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = p2statetype != L
 triggerall = statetype = S
@@ -904,7 +1155,7 @@ trigger1 = !(enemynear, hitdefattr = SCA, AT)
 [State -1, keep away]
 type = ChangeState
 value = ifelse(backedgedist > 50, 105, 41)
-triggerall = 000 + 1
+triggerall = 000 + 0
 triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = statetype != A
 triggerall = p2statetype != A
@@ -922,9 +1173,34 @@ triggerall = ctrl || (stateno = [20,29])
 triggerall = enemynear, numproj = 0
 triggerall = random > 50
 triggerall = ifelse((palno = [7, 12]), 1, power > 1000 + random % 2500)
-trigger1 = (enemynear, movetype = H && var(56) = 0) || (enemynear, movetype != H && enemynear, statetype = A && abs(p2dist Y) < 88)
+trigger1 = (enemynear, movetype = H && var(58) = 0) || (enemynear, movetype != H && enemynear, statetype = A && abs(p2dist Y) < 88)
 trigger1 = p2dist X > 85+5*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 trigger1 = p2dist X < 165+5*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+
+[State -1, run into] ;test
+type = ChangeState
+value = 100
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = ctrl || (stateno = [20,29])
+triggerall = !(enemynear, stateno = [800, 899])
+trigger1 = enemynear, movetype = I && (enemynear, time > 10 || (enemynear, vel X = 0 && enemynear, vel Y = 0))
+trigger1 = p2bodydist X > 70
+
+[State -1, keep] ;test
+type = ChangeState
+value = 700
+triggerall = 000 + 0
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = ctrl || (stateno = [20,29]) || (stateno = [99, 101])
+triggerall = !(enemynear, stateno = [800, 899])
+trigger1 = p2statetype = A
+trigger1 = p2dist X < 10+3*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = enemynear, pos Y < - const(size.height)
+trigger1 = enemynear, vel X > 0
+
 
 ;SENTI
 ;==============================================================================

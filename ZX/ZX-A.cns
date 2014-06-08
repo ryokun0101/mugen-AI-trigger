@@ -113,30 +113,11 @@ ctrl = 0
 sprpriority = 1
 velset = 0,0
 
-[State -1, AI];小ジャンプ判定
-type = varset
-trigger1 = 1
-v = 4
-value = 1
-
-[State 42, 2]
-type = VarSet
-trigger1 = 1
-sysvar(1) = 0
-
 [State 42, 4];小ジャンプ
 type = VelSet
 trigger1 = AnimTime = 0
-trigger1 = Var(4) = 1
-x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
-y = -6
-
-[State 42, 5]
-type = VelSet
-trigger1 = AnimTime = 0
-trigger1 = prevstateno = 100 ;RUN_FWD
-trigger1 = sysvar(1) = 1
-x = const(velocity.runjump.fwd.x)
+x = const(velocity.jump.fwd.x) + 3.5
+y = -6.3
 
 [State 42, 6]
 type = ChangeState

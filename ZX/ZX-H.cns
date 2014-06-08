@@ -428,6 +428,9 @@ type = ChangeState
 triggerall = time >=12
 triggerall = time <=40
 trigger1 = command != "’·‰Ÿ‚µ"
+trigger1 = var(59) != 1
+trigger2 = var(59) = 1
+trigger2 = p2dist y > -100-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 value = 2101
 
 [State 1300, End]
