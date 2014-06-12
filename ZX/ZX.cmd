@@ -607,9 +607,17 @@ triggerall = var(59) = 1 && alive && roundstate = 2
 triggerall = ifelse((PalNo = [7,12]), power >= 1000, power >= 2000)
 triggerall = ifelse((PalNo = [7,12]), ifelse((life > enemynear, life || enemynear, life < 100), 1, power <= 2000), ifelse((life > enemynear, life || enemynear, life < 100), 1, power <= 3000))
 triggerall = statetype != A
-trigger1 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101]) || (stateno = [120,131])
-trigger1 = enemynear, animtime < -28 || (inguarddist && p2dist X < 80)
-trigger1 = enemynear, movetype = A
+triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101]) || (stateno = [120,131])
+triggerall = enemynear, movetype = A
+trigger1 = enemynear, animtime < -29
+trigger2 = inguarddist
+trigger2 = p2dist X < 80
+trigger3 = inguarddist
+trigger3 = enemynear, numproj
+trigger3 = enemynear, pos Y < -100
+trigger4 = inguarddist
+trigger4 = enemynear, numproj
+trigger4 = enemynear, pos Y >= -100 && life < 60
 
 [State -1, san round slash]
 type = ChangeState
@@ -960,15 +968,17 @@ trigger2 = power >= 7500
 trigger3 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
 trigger3 = var(58) <= 6
 Trigger3 = p2dist x < 68+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
-Trigger3 = p2dist x > ifelse(p2movetype = H, 27, 32)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+Trigger3 = p2dist x > ifelse(p2movetype = H, 37, 42)+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
 Trigger3 = p2dist y < -45-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
-Trigger3 = p2dist y > -70-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+Trigger3 = p2dist y > -55-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
 trigger4 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
 trigger4 = p2movetype = A
 trigger4 = p2dist X < 100
 trigger4 = p2dist X > 77
 trigger4 = enemynear, animtime < -25
 trigger4 = enemynear, numproj = 0 || !inguarddist
+Trigger4 = p2statetype != A
+
 
 [State -1, 1 other hand juggle slash]
 type = ChangeState
