@@ -95,7 +95,7 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="Sprite" sid="6093165204030918">
+        <object-type name="MAIN_Interact_Contructing" sid="6093165204030918">
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="ID" sid="1958950270724027" type="number" />
@@ -111,6 +111,120 @@
                             <point x="0.494737" y="0.957895" />
                             <point x="0.189474" y="0.810526" />
                             <point x="0.368421" y="0.494737" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HUD_Resource" sid="5970917306608309">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6975739645028759" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.506667">
+                        <collision-poly>
+                            <point x="0.04" y="0.08" />
+                            <point x="0.5" y="0.0666667" />
+                            <point x="0.96" y="0.08" />
+                            <point x="0.98" y="0.493333" />
+                            <point x="0.966667" y="0.933333" />
+                            <point x="0.5" y="0.946667" />
+                            <point x="0.0333333" y="0.933333" />
+                            <point x="0.02" y="0.493333" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HUD_Option" sid="4006485656310873">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8757085473848539" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.506667">
+                        <collision-poly>
+                            <point x="0.04" y="0.08" />
+                            <point x="0.5" y="0.0666667" />
+                            <point x="0.96" y="0.08" />
+                            <point x="0.98" y="0.493333" />
+                            <point x="0.966667" y="0.933333" />
+                            <point x="0.5" y="0.946667" />
+                            <point x="0.0333333" y="0.933333" />
+                            <point x="0.02" y="0.493333" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HUD_Action" sid="3436843799731483">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3315379062508127" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.506667">
+                        <collision-poly>
+                            <point x="0.04" y="0.08" />
+                            <point x="0.5" y="0.0666667" />
+                            <point x="0.96" y="0.08" />
+                            <point x="0.98" y="0.493333" />
+                            <point x="0.966667" y="0.933333" />
+                            <point x="0.5" y="0.946667" />
+                            <point x="0.0333333" y="0.933333" />
+                            <point x="0.02" y="0.493333" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HUD_Resource_Gold" sid="2540145634299592">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3035408615395972" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.1875" y="0.1875" />
+                            <point x="0.5" y="0" />
+                            <point x="0.8125" y="0.1875" />
+                            <point x="1" y="0.5" />
+                            <point x="0.875" y="0.875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.1875" y="0.8125" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="HUD_Resource_Food" sid="2358734855460177">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="8201875534855492" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.2" y="0.25" />
+                            <point x="0.5" y="0" />
+                            <point x="0.9" y="0.125" />
+                            <point x="0.95" y="0.5" />
+                            <point x="0.8" y="0.75" />
+                            <point x="0.5" y="0.9375" />
+                            <point x="0.15" y="0.8125" />
+                            <point x="0.1" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite" sid="8647229487682632">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3954549991497333" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0" y="0" />
+                            <point x="0.5" y="0.0454545" />
+                            <point x="0.95" y="0.0454545" />
+                            <point x="0.85" y="0.5" />
+                            <point x="0.85" y="0.863636" />
+                            <point x="0.5" y="0.954545" />
+                            <point x="0.1" y="0.909091" />
+                            <point x="0.15" y="0.5" />
                         </collision-poly>
                     </frame>
                 </animation>
