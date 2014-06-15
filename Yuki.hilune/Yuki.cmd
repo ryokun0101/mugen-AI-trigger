@@ -336,7 +336,20 @@ Command.buffer.Time = 4
 
 ; 下の記述↓は絶対に消さないでください。
 [Statedef -1]
+;SENTI
+[State -1, aiforce]
+type = VarSet
+trigger1 = 1
+var(59) = 1
 
+[State -1, aiforce]
+type = ChangeState
+value = 4400; SENTI
+trigger1 = var(59) = 1 && alive && roundstate = 2
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger1 = p2dist X < 130
+;SENTI
 ;==============================================================================;
 ; 超必殺技
 ;==============================================================================;
@@ -345,7 +358,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Change Atomic Guy Neos]
   Type       = ChangeState
-  Value      = 3400
+  Value      = 3400 ;SENTI: atomic guy
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "2363214XZ"
   TriggerAll = Var(23) > 0
@@ -360,7 +374,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Choudokyu Neo Geo Ranbu]
   Type       = ChangeState
-  Value      = 3300
+  Value      = 3300 ;SENTI: ranbu
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "2363214X" || Command = "2363214Y"
   TriggerAll = Power >= 1000
@@ -373,7 +388,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Choudokyu Status Up]
   Type       = ChangeState
-  Value      = 3010
+  Value      = 3010 ;SENTI: power up
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236236AB"
   TriggerAll = Power >= 2000
@@ -386,7 +402,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Choudokyu Status Up]
   Type       = ChangeState
-  Value      = 3000
+  Value      = 3000 ;SENTI: power up
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236236A" || Command = "236236B"
   TriggerAll = Power >= 1000
@@ -399,7 +416,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Choudokyu MAX 330 Mega Beam]
   Type       = ChangeState
-  Value      = 3200
+  Value      = 3200 ;SENTI: beam
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214214XAY" || Command = "214214YC"
   TriggerAll = Power >= 3000
@@ -412,7 +430,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1 : Choudokyu 100 Mega Beam]
   Type       = ChangeState
-  Value      = 3100
+  Value      = 3100 ;SENTI: beam
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214214X" || Command = "214214Y"
   TriggerAll = Power >= 1000
@@ -428,7 +447,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : ]
   Type       = Null;ChangeState
-  Value      = 2650
+  Value      = 2650 ;SENTI: null
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "631246XY"
   TriggerAll = Var(18) > 0
@@ -442,7 +462,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : ]
   Type       = ChangeState
-  Value      = 2600
+  Value      = 2600 ;SENTI: hug wrestler
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "631246XY"
   TriggerAll = Power >= 500
@@ -455,7 +476,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : ]
   Type       = ChangeState
-  Value      = 1650
+  Value      = 1650 ;SENTI: hug wrestler
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "631246X" || Command = "631246Y"
   TriggerAll = Var(18) > 0 || Var(22) > 0
@@ -468,7 +490,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : ]
   Type       = ChangeState
-  Value      = 1600
+  Value      = 1600 ;SENTI: hug wrestler
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "631246X" || Command = "631246Y"
   TriggerAll = StateType != A
@@ -479,7 +502,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Sengoku Denshou EX]
   Type       = Null;ChangeState
-  Value      = 2550
+  Value      = 2550 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "63124AB"
   TriggerAll = (StateNo != [1550,1580]) && (StateNo != [2500,2580])
@@ -493,7 +517,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Sengoku Denshou EX]
   Type       = ChangeState
-  Value      = 2500
+  Value      = 2500 ;SENTI: air slash
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "63124AB"
   TriggerAll = (StateNo != [1550,1580]) && (StateNo != [2500,2580])
@@ -507,7 +532,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Sengoku Denshou]
   Type       = ChangeState
-  Value      = 1550
+  Value      = 1550 ;SENTI: air slash
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "63124A" || Command = "63124B"
   TriggerAll = (StateNo != [1550,1580]) && (StateNo != [2500,2580])
@@ -521,7 +547,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Sengoku Denshou]
   Type       = ChangeState
-  Value      = 1500
+  Value      = 1500 ;SENTI: air slash
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "63124A" || Command = "63124B"
   TriggerAll = StateType != A
@@ -532,7 +559,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw]
   Type       = ChangeState
-  Value      = 2150
+  Value      = 2150 ;SENTI: rising punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623XY"
   TriggerAll = (StateNo != 1150) && (StateNo != [2100,2150])
@@ -547,7 +575,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw EX]
   Type       = ChangeState
-  Value      = 2100
+  Value      = 2100 ;SENTI:rising punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623XY"
   TriggerAll = (StateNo != 1150) && (StateNo != [2100,2150])
@@ -561,7 +590,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw]
   Type       = ChangeState
-  Value      = 1150
+  Value      = 1150 ;SENTI: rising punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623X" || Command = "623Y"
   TriggerAll = (StateNo != 1150) && (StateNo != [2100,2150])
@@ -575,7 +605,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw]
   Type       = ChangeState
-  Value      = 1100
+  Value      = 1100 ;SENTI: rising punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623X" || Command = "623Y"
   TriggerAll = StateType != A
@@ -586,7 +617,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster EX]
   Type       = ChangeState
-  Value      = 2050
+  Value      = 2050 ;SENTI: counter wire
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236XY"
   TriggerAll = Power >= 500
@@ -600,7 +632,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster EX]
   Type       = ChangeState
-  Value      = 2000
+  Value      = 2000 ;SENTI:counter wire
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236XY"
   TriggerAll = Power >= 500
@@ -613,7 +646,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster]
   Type       = ChangeState
-  Value      = 1050
+  Value      = 1050 ;SENTI:counter wire
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236X" || Command = "236Y"
   TriggerAll = StateType != A
@@ -626,7 +660,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster]
   Type       = ChangeState
-  Value      = 1000
+  Value      = 1000 ;SENTI:counter wire
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236X" || Command = "236Y"
   TriggerAll = StateType != A
@@ -637,7 +672,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Lightning Fist]
   Type       = ChangeState
-  Value      = 2450
+  Value      = 2450 ;SENTI: lightning net
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214XY"
   TriggerAll = (StateNo != [1450,1460]) && (StateNo != [2400,2460])
@@ -651,7 +687,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Lightning Fist EX]
   Type       = ChangeState
-  Value      = 2400
+  Value      = 2400 ;SENTI: lightning net
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214XY" || Command = "236XY"
   TriggerAll = (StateNo != [1450,1460]) && (StateNo != [2400,2460])
@@ -664,7 +701,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Lightning Fist]
   Type       = ChangeState
-  Value      = 1450
+  Value      = 1450 ;SENTI: lightning net
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214X" || Command = "214Y"
   TriggerAll = (StateNo != [1450,1460]) && (StateNo != [2400,2460])
@@ -678,7 +716,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Lightning Fist]
   Type       = ChangeState
-  Value      = 1400
+  Value      = 1400 ;SENTI: lightning net
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214X" || Command = "214Y"
   Trigger1   = Ctrl && StateType = A
@@ -689,7 +728,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Bakuretsu ken]
   Type       = ChangeState
-  Value      = 2250
+  Value      = 2250 ;SENTI: sphere punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214XY"
   TriggerAll = (StateNo != 1250) && (StateNo != [2200,2260])
@@ -705,7 +745,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Bakuretsu ken EX]
   Type       = ChangeState
-  Value      = 2200
+  Value      = 2200 ;SENTI: sphere punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214XY"
   TriggerAll = (StateNo != 1250) && (StateNo != [2200,2260])
@@ -719,7 +760,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Bakuretsu ken]
   Type       = ChangeState
-  Value      = 1250
+  Value      = 1250 ;SENTI: sphere punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214X" || Command = "214Y"
   TriggerAll = (StateNo != 1250) && (StateNo != [2200,2260])
@@ -733,7 +775,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Bakuretsu ken]
   Type       = ChangeState
-  Value      = 1200
+  Value      = 1200 ;SENTI: sphere punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214X" || Command = "214Y"
   TriggerAll = StateType != A
@@ -744,7 +787,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 2300
+  Value      = 2300 ;SENTI: jetpack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214AB"
   TriggerAll = (StateNo != [1300,1320]) && (StateNo != 2300)
@@ -758,7 +802,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 1320
+  Value      = 1320 ;SENTI: jetpack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214A" || Command = "214B"
   TriggerAll = Var(16) > 0 || Var(22) > 0
@@ -773,7 +818,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 1300
+  Value      = 1300 ;SENTI: jetpack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214A" || Command = "214B"
   TriggerAll = StateNo != [1300,1370]
@@ -786,7 +832,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 2350
+  Value      = 2350 ;SENTI: jetpack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236AB"
   TriggerAll = (StateNo != [1350,1370]) && (StateNo != 2350)
@@ -800,7 +847,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 1370
+  Value      = 1370 ;SENTI: jetpack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236A" || Command = "236B"
   TriggerAll = Var(16) > 0 || Var(22) > 0
@@ -815,7 +863,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 1350
+  Value      = 1350 ;SENTI: jet pack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236A" || Command = "236B"
   TriggerAll = StateNo != [1300,1370]
@@ -828,7 +877,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Memory Card Slash]
   Type       = ChangeState
-  Value      = 2700
+  Value      = 2700 ;SENTI: power up
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "22XY" || Command = "22AB"
   TriggerAll = (StateNo != 1700) && (StateNo != 2700)
@@ -842,7 +892,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Memory Card Slash]
   Type       = ChangeState
-  Value      = 1700
+  Value      = 1700 ;SENTI: power up
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "MemoryCardSlash"
   TriggerAll = (StateNo != 1700) && (StateNo != 2700)
@@ -858,7 +909,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Run Fwd]
   Type       = Null;ChangeState
-  Value      = 100
+  Value      = 100 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "FF"
   TriggerAll = StateType != A
@@ -869,7 +921,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Run Fwd]
   Type       = ChangeState
-  Value      = 101
+  Value      = 101 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "FF"
   TriggerAll = StateType != A
@@ -882,7 +935,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Run Back]
   Type       = ChangeState
-  Value      = 105
+  Value      = 105 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "BB"
   TriggerAll = StateType != A
@@ -893,7 +947,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Jump]
   Type       = ChangeState
-  Value      = 40
+  Value      = 40 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "holdup"
   TriggerAll = StateType != A
@@ -905,7 +960,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Fire Suplex]
   Type       = ChangeState
-  Value      = 800
+  Value      = 800 ;SENTI: hug wrestler
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "y" && Command = "b"
   TriggerAll = StateType != A
@@ -916,7 +972,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1]
   Type       = ChangeState
-  Value      = 905
+  Value      = 905 ;SENTI: guard roll
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = (Command = "x" && Command = "a") || Command = "c"
   TriggerAll = Command = "holdback"
@@ -930,7 +987,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1]
   Type       = ChangeState
-  Value      = 900
+  Value      = 900 ;SENTI: guard roll
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = (Command = "x" && Command = "a") || Command = "c"
   TriggerAll = StateType != A
@@ -943,7 +1001,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1]
   Type       = ChangeState
-  Value      = 910
+  Value      = 910 ;SENTI: guard attack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "z"
   TriggerAll = StateType != A
@@ -956,7 +1015,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1]
   Type       = ChangeState
-  Value      = 920
+  Value      = 920 ;SENTI: guard attack
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "z"
   TriggerAll = StateType = A
@@ -973,7 +1033,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Mutition Combination]
   Type       = ChangeState
-  Value      = 310
+  Value      = 310 ;SENTI: fwd punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "6X"
   TriggerAll = StateType != A
@@ -987,7 +1048,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Stand Light Punch(Long Range)]
   Type       = ChangeState
-  Value      = 200
+  Value      = 200 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "x"
   TriggerAll = Command != "holddown"
@@ -1000,7 +1062,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Stand Light Punch(Short Range)]
   Type       = ChangeState
-  Value      = 205
+  Value      = 205 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "x"
   TriggerAll = Command != "holddown"
@@ -1013,7 +1076,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Stand Strong Punch(Long Range)]
   Type       = ChangeState
-  Value      = 210
+  Value      = 210 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "y"
   TriggerAll = Command != "holddown"
@@ -1026,7 +1090,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Stand Strong Punch(Short Range)]
   Type       = ChangeState
-  Value      = 215
+  Value      = 215 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "y"
   TriggerAll = Command != "holddown"
@@ -1039,7 +1104,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Stand Light Kick(Long Range)]
   Type       = ChangeState
-  Value      = 230
+  Value      = 230 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "a"
   TriggerAll = Command != "holddown"
@@ -1052,7 +1118,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Stand Light Kick(Short Range)]
   Type       = ChangeState
-  Value      = 235
+  Value      = 235 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "a"
   TriggerAll = Command != "holddown"
@@ -1065,7 +1132,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Standing Strong Kick(Long Range)]
   Type       = ChangeState
-  Value      = 240
+  Value      = 240 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "b"
   TriggerAll = Command != "holddown"
@@ -1078,7 +1146,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Standing Strong Kick(Short Range)]
   Type       = ChangeState
-  Value      = 245
+  Value      = 245 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "b"
   TriggerAll = Command != "holddown"
@@ -1091,7 +1160,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Crouching Light Punch]
   Type       = ChangeState
-  Value      = 400
+  Value      = 400 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "x"
   TriggerAll = Command = "holddown"
@@ -1103,7 +1173,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Crouching Strong Punch]
   Type       = ChangeState
-  Value      = 410
+  Value      = 410 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "y"
   TriggerAll = Command = "holddown"
@@ -1115,7 +1186,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Crouching Light Kick]
   Type       = ChangeState
-  Value      = 430
+  Value      = 430 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "a"
   TriggerAll = Command = "holddown"
@@ -1128,7 +1200,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Crouching Strong Kick]
   Type       = ChangeState
-  Value      = 440
+  Value      = 440 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "b"
   TriggerAll = Command = "holddown"
@@ -1140,7 +1213,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Jump Light Punch]
   Type       = ChangeState
-  Value      = 600
+  Value      = 600 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "x"
   TriggerAll = StateType = A
@@ -1151,7 +1225,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Jump Strong Punch]
   Type       = ChangeState
-  Value      = 610
+  Value      = 610 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "y"
   TriggerAll = StateType = A
@@ -1162,7 +1237,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Jump Light Kick]
   Type       = ChangeState
-  Value      = 630
+  Value      = 630 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "a"
   TriggerAll = StateType = A
@@ -1173,7 +1249,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Jump Strong Kick]
   Type       = ChangeState
-  Value      = 640
+  Value      = 640 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "b"
   TriggerAll = StateType = A
@@ -1184,7 +1261,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Taunt]
   Type       = ChangeState
-  Value      = 195
+  Value      = 195 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "start"
   TriggerAll = StateType != A
@@ -1198,7 +1276,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : MegatonSpark]
   Type       = ChangeState
-  Value      = 4800
+  Value      = 4800 ;SENTI: raging storm
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "XAY" || Command = "YC"
   TriggerAll = StateType != A
@@ -1209,7 +1288,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Jump]
   Type       = ChangeState
-  Value      = 4040
+  Value      = 4040 ;SENTI: jump
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "holdup"
   TriggerAll = StateNo != 4040
@@ -1221,7 +1301,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Walk]
   Type       = ChangeState
-  Value      = 4020
+  Value      = 4020 ;SENTI: walk
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "holdfwd"
   TriggerAll = StateType != A
@@ -1232,7 +1313,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : Back]
   Type       = ChangeState
-  Value      = 4021
+  Value      = 4021 ;SENTI: back
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "holdback"
   TriggerAll = StateType != A
@@ -1243,7 +1325,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : AtomicPunch]
   Type       = ChangeState
-  Value      = 4200
+  Value      = 4200 ;SENTI: punch
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "x" || Command = "y"
   TriggerAll = StateType != A
@@ -1254,7 +1337,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : AtomicSliding]
   Type       = ChangeState
-  Value      = 4400
+  Value      = 4400 ;SENTI: slide
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "a" || Command = "b"
   TriggerAll = StateType != A
@@ -1265,7 +1349,8 @@ Command.buffer.Time = 4
 ;--------------------------------------------------------------------;
 [State -1     : AtomicSlash]
   Type       = ChangeState
-  Value      = 4600
+  Value      = 4600 ;SENTI:
+  triggerall = var(59) != 1
   TriggerAll = Var(24) > 0
   TriggerAll = Command = "x" || Command = "y" || Command = "a" || Command = "b"
   TriggerAll = StateType = A
