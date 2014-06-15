@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>New project</name>
+    <description></description>
+    <version>1.0.0.0</version>
+    <author></author>
+    <author-email></author-email>
+    <author-website>http://</author-website>
+    <app-id>com.mycompany.myapp</app-id>
+    <unique-id>2rhjp6kyuehiv</unique-id>
+    <saved-with-version>16800</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+    </used-plugins>
+    <used-behaviors />
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>854</width>
+        <height>480</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D web</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder expanded="1">
+        <object-type name="TiledBackground" sid="3862724514078504">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="MAIN_Interact_Castle" sid="7548442859215337">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6573583094959066" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.254098" y="0.234848" />
+                            <point x="0.5" y="0.204545" />
+                            <point x="0.92623" y="0.5" />
+                            <point x="0.762295" y="0.780303" />
+                            <point x="0.5" y="0.924242" />
+                            <point x="0.172131" y="0.840909" />
+                            <point x="0.106557" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MAIN_Interact_Tree_Horizontal" sid="2966373560650596">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6346940868571465" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.04375" y="0.0729167" />
+                            <point x="0.5" y="0.0520833" />
+                            <point x="0.925" y="0.125" />
+                            <point x="0.91875" y="0.864583" />
+                            <point x="0.5" y="0.9375" />
+                            <point x="0.05625" y="0.90625" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MAIN_Interact_Tree_Vertical" sid="3439274195667502">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6087665149878059" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0729167" y="0.04375" />
+                            <point x="0.5" y="0.03125" />
+                            <point x="0.875" y="0.075" />
+                            <point x="0.885417" y="0.5" />
+                            <point x="0.864583" y="0.91875" />
+                            <point x="0.5" y="0.9625" />
+                            <point x="0.09375" y="0.94375" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite" sid="6093165204030918">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="ID" sid="1958950270724027" type="number" />
+            </instance-variables>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4323876900631358" speed="5">
+                    <frame duration="1" hotspotX="0.505263" hotspotY="0.505263">
+                        <collision-poly>
+                            <point x="0.442105" y="0.442105" />
+                            <point x="0.494737" y="0.431579" />
+                            <point x="0.547368" y="0.452632" />
+                            <point x="0.842105" y="0.842105" />
+                            <point x="0.494737" y="0.957895" />
+                            <point x="0.189474" y="0.810526" />
+                            <point x="0.368421" y="0.494737" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder expanded="1">
+        <layout>Layout 1.xml</layout>
+    </layout-folder>
+    <event-folder expanded="1">
+        <event-sheet>Event sheet 1.xml</event-sheet>
+    </event-folder>
+    <global-instances />
+    <sounds-folder expanded="1" />
+    <music-folder expanded="1" />
+    <files-folder expanded="1">
+        <file-folder expanded="0" name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
