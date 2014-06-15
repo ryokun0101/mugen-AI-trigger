@@ -436,7 +436,74 @@ type = removeexplod
 trigger1 = RoundState > 2
 id = 7510
 
+;SENTI
+[StateDef 11000]
+anim=0
+ctrl=0
 
+[State 825]
+type = assertspecial
+trigger1 = 1
+flag = invisible
+flag2= noshadow
+
+[State 825]
+type = nothitby
+trigger1 = 1
+value = SCA
+
+[State 10000]
+type=selfstate
+trigger1=!ishelper
+value=0
+
+[State 10000]
+type=varset
+Trigger1=command="a"&&root,command="a"
+Trigger2=command="b"&&root,command="b"
+Trigger3=command="c"&&root,command="c"
+Trigger4=command="x"&&root,command="x"
+Trigger5=command="y"&&root,command="y"
+Trigger6=command="z"&&root,command="z"
+Trigger7=command="s"&&root,command="s"
+var(59)=-1
+
+[State 10000]
+type=parentvarset
+Trigger1=command="a"&&root,command="a"
+Trigger2=command="b"&&root,command="b"
+Trigger3=command="c"&&root,command="c"
+Trigger4=command="x"&&root,command="x"
+Trigger5=command="y"&&root,command="y"
+Trigger6=command="z"&&root,command="z"
+Trigger7=command="s"&&root,command="s"
+var(59)=-1
+
+[State 10000]
+Type = DestroySelf
+TriggerAll=isHelper
+Trigger1=root,var(59)!=0||var(59)=-1
+Trigger2=command="a"&&root,command="a"
+Trigger3=command="b"&&root,command="b"
+Trigger4=command="c"&&root,command="c"
+Trigger5=command="x"&&root,command="x"
+Trigger6=command="y"&&root,command="y"
+Trigger7=command="z"&&root,command="z"
+Trigger8=command="s"&&root,command="s"
+
+[State 10000]
+Type=varset
+TriggerAll=var(59)!=-1
+Trigger1=root,command="a"
+Trigger2=root,command="b"
+Trigger3=root,command="c"
+Trigger4=root,command="x"
+Trigger5=root,command="y"
+Trigger6=root,command="z"
+Trigger7=root,command="s"
+var(59)=1
+
+;SENTI
 
 
 

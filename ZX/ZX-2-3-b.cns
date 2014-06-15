@@ -152,7 +152,69 @@ y = -2
 ;---------------------------------------------------------------------------------
 [Statedef -3];常時監視ステート(p2statenoなどで相手に行動を制御された時は実行しない)
 ;---------------------------------------------------------------------------------
+;SENTI
+[State -3]
+type=helper
+Triggerall=!ishelper
+Triggerall=Roundstate<2||(Roundstate=2&&Ctrl)
+Trigger1=!Numhelper(11000+id)
+Trigger1=Alive
+Trigger1=var(59)=0
+helpertype=normal
+name="AI"
+Stateno=11000
+ID=11000+id
+pos=9999,9999
+keyCtrl=1
+pausemovetime=2147483647
+supermovetime=2147483647
+persistent = 0
 
+[State -3]
+type=changestate
+Trigger1= ishelper
+Trigger1= ishelper(11000+root,id)
+Trigger1= Stateno!=11000
+value=11000
+
+[State -3]
+type = VarSet
+Triggerall = (var(59) <= 0)&&!IsHelper
+Trigger1 = Command="AI0"||Command="AI1"
+Trigger2 = Command="AI2"||Command="AI3"
+Trigger3 = Command="AI4"||Command="AI5"
+Trigger4 = Command="AI6"||Command="AI7"
+Trigger5 = Command="AI8"||Command="AI9"
+Trigger6 = Command="AI10"||Command="AI11"
+Trigger7 = Command="AI12"||Command="AI13"
+Trigger8 = Command="AI14"||Command="AI15"
+Trigger9 = Command="AI16"||Command="AI17"
+Trigger10= Command="AI18"||Command="AI19"
+Trigger11= Command="AI20"||Command="AI21"
+Trigger12= Command="AI22"||Command="AI23"
+Trigger13= Command="AI24"||Command="AI25"
+Trigger14= Command="AI26"||Command="AI27"
+Trigger15= Command="AI28"||Command="AI29"
+Trigger16= Command="AI30"||Command="AI31"
+Trigger17= Command="AI32"||Command="AI33"
+Trigger18= Command="AI34"||Command="AI35"
+Trigger19= Command="AI36"||Command="AI37"
+Trigger20= Command="AI38"||Command="AI39"
+Trigger21= Command="AI40"||Command="AI41"
+Trigger22= Command="AI42"||Command="AI43"
+Trigger23= Command="AI44"||Command="AI45"
+Trigger24= Command="AI46"||Command="AI47"
+Trigger25= Command="AI48"||Command="AI49"
+Trigger26= Command="AI50"
+Trigger27= var(59)=0
+Trigger27= numhelper(11000+id)
+Trigger27= helper(11000+id),var(59)>0
+v = 59
+value = 1
+IgnoreHitPause = 1
+Persistent = 1
+
+;SENTI
 [State -3, 音を鳴らす]
 type = PlaySnd
 triggerall = Time = 1
