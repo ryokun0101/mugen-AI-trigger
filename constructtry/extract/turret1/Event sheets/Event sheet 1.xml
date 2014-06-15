@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <event-block sid="4487918887645982">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="4479863968605885" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="0" name="Find path" sid="1462382652058427" type="Offense">
+                    <param id="0" name="X">Turret.X</param>
+                    <param id="1" name="Y">Turret.Y</param>
+                </action>
+                <action behavior="Turret" id="1" name="Add object to target" sid="4442483802529367" type="Turret">
+                    <param id="0" name="Target">Offense</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8746972197191908">
+            <conditions>
+                <condition behavior="Pathfinding" id="0" name="On path found" sid="821553011219566" type="Offense" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="1" name="Move along path" sid="6461253994398411" type="Offense" />
+            </actions>
+        </event-block>
+        <event-block sid="6520311287488114">
+            <conditions>
+                <condition behavior="Turret" id="0" name="Has target" sid="1087043257033099" type="Turret" />
+            </conditions>
+            <actions>
+                <action behavior="Turret" id="0" name="Acquire target" sid="5347850036061857" type="Turret">
+                    <param id="0" name="Target">Offense</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="526652465881128">
+            <conditions>
+                <condition behavior="Turret" id="1" name="On shoot" sid="865967728806058" type="Turret" />
+            </conditions>
+            <actions />
+        </event-block>
+    </events>
+</c2eventsheet>

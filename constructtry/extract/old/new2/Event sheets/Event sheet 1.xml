@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="MaxRange" sid="9052543192055014" static="0" type="number">192</variable>
+        <variable comment="The ID of the selecting tower" constant="0" name="SelectTower" sid="3139592632098314" static="0" type="number">0</variable>
+        <event-block sid="4793551777969173">
+            <conditions>
+                <condition id="-18" name="On created" sid="5346036518481899" type="MAIN_Interact_FemaleCitizen" />
+            </conditions>
+            <actions>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8137009469834542" type="MAIN_Sprite_FemaleCitizen">
+                    <param id="0" name="Pin to">MAIN_Interact_FemaleCitizen</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pathfinding" id="0" name="Find path" sid="265138768712382" type="MAIN_Interact_FemaleCitizen">
+                    <param id="0" name="X">MAIN_Interact_Castle.X</param>
+                    <param id="1" name="Y">MAIN_Interact_Castle.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4926926425731469">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8117143146059303" type="MAIN_Interact_FemaleCitizen">
+                    <param id="0" name="Object">MAIN_Interact_Castle</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="5413416047222554" type="MAIN_Interact_Castle">
+                    <param id="0" name="Object">MAIN_Effect_Explosive</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="4490938294178258" type="MAIN_Interact_Castle" />
+            </actions>
+        </event-block>
+        <event-block sid="1442163993625917">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="7006079109285744" type="System">
+                    <param id="0" name="First value">MAIN_Interact_Castle.X</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Second value">MAIN_Sprite_FemaleCitizen.X</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="180551182383938" type="MAIN_Sprite_FemaleCitizen">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6392962090689525">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="8149562754269082" type="System">
+                    <param id="0" name="First value">MAIN_Interact_FemaleCitizen.Pathfinding.Speed</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="5596010893930379" type="MAIN_Sprite_FemaleCitizen">
+                    <param id="0" name="Animation">&quot;Move&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1809925912687602">
+            <conditions>
+                <condition behavior="Pathfinding" id="0" name="On path found" sid="8878401177102169" type="MAIN_Interact_FemaleCitizen" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="1" name="Move along path" sid="6829484710049305" type="MAIN_Interact_FemaleCitizen" />
+            </actions>
+        </event-block>
+        <event-block sid="7863187725277614">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="8578048573560544" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">MAIN_Interact_ConstructingTower</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="1901668117485288" type="HUD_Interact_Option1">
+                    <param id="0" name="Object">HUD_Button_Arrow</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="9249539356236409" type="System">
+                    <param id="0" name="Variable">SelectTower</param>
+                    <param id="1" name="Value">MAIN_Interact_ConstructingTower.ID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="688368783274151">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="5714815877388572" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">HUD_Button_Arrow</param>
+                </condition>
+                <condition id="-33" name="Pick by comparison" sid="9557561900736455" type="System">
+                    <param id="0" name="Object">MAIN_Interact_ConstructingTower</param>
+                    <param id="1" name="Expression">MAIN_Interact_ConstructingTower.ID</param>
+                    <param id="2" name="Comparison">0</param>
+                    <param id="3" name="Value">SelectTower</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="1065703012021167" type="MAIN_Interact_ConstructingTower">
+                    <param id="0" name="Object">MAIN_Effect_BuildComplete</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4749885557146912" type="MAIN_Interact_ConstructingTower">
+                    <param id="0" name="Object">MAIN_Interact_Arrow</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6272336163526165" type="MAIN_Interact_ConstructingTower" />
+            </actions>
+        </event-block>
+        <event-block sid="803704402623877">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5542007533770134" type="System" />
+                <condition id="-7" name="Compare instance variable" sid="9940406270597778" type="MAIN_Interact_Arrow">
+                    <param id="0" name="Instance variable">FireInterval</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">10</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="7852824479969919" type="MAIN_Interact_Arrow">
+                    <param id="0" name="Object">Main_Interact_Bullet_Arrow</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3028294207847703">
+            <conditions>
+                <condition id="-18" name="On created" sid="5914435872850354" type="Main_Interact_Bullet_Arrow" />
+            </conditions>
+            <actions>
+                <action id="-22" name="Set angle toward position" sid="9467288402316048" type="Main_Interact_Bullet_Arrow">
+                    <param id="0" name="X">MAIN_Interact_FemaleCitizen.X</param>
+                    <param id="1" name="Y">MAIN_Interact_FemaleCitizen.Y</param>
+                </action>
+                <action id="-10" name="Set value" sid="6398699747634889" type="MAIN_Interact_Arrow">
+                    <param id="0" name="Instance variable">FireInterval</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8651864876066815">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="565980691046619" type="System" />
+            </conditions>
+            <actions>
+                <action id="-11" name="Add to" sid="9836508391365484" type="MAIN_Interact_Arrow">
+                    <param id="0" name="Instance variable">FireInterval</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="502520603240452">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3409657054402652" type="Main_Interact_Bullet_Arrow">
+                    <param id="0" name="Object">MAIN_Interact_FemaleCitizen</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="9010109429933405" type="MAIN_Interact_FemaleCitizen">
+                    <param id="0" name="Instance variable">HP</param>
+                    <param id="1" name="Value">25</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6205479228094247">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="274771435645931" type="MAIN_Interact_FemaleCitizen">
+                    <param id="0" name="Instance variable">HP</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="2" name="Stop" sid="6264243350049812" type="MAIN_Interact_FemaleCitizen" />
+            </actions>
+        </event-block>
+        <event-block sid="1263017712571419">
+            <conditions>
+                <condition id="-18" name="On created" sid="5605374470386054" type="MAIN_Interact_Arrow" />
+            </conditions>
+            <actions>
+                <action behavior="Turret" id="0" name="Acquire target" sid="4983732935291595" type="MAIN_Interact_Arrow">
+                    <param id="0" name="Target">MAIN_Interact_FemaleCitizen</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7144067524504428">
+            <conditions>
+                <condition behavior="Turret" id="1" name="On shoot" sid="1628299351871579" type="MAIN_Interact_Arrow" />
+            </conditions>
+            <actions />
+        </event-block>
+    </events>
+</c2eventsheet>
