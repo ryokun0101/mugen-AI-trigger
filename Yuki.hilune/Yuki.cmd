@@ -342,13 +342,185 @@ type = VarSet
 trigger1 = 1
 var(59) = 1
 
-[State -1, aiforce]
+;GUARD
+[State -1, Guard]
 type = ChangeState
-value = 4400; SENTI
-trigger1 = var(59) = 1 && alive && roundstate = 2
-trigger1 = statetype != A
-trigger1 = ctrl
-trigger1 = p2dist X < 130
+value = 120
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+triggerall = !(enemynear, hitdefattr = SCA, AT)
+TriggerAll = stateno != 120
+trigger1 = inguarddist
+trigger1 = enemynear, MoveGuarded = 0
+trigger2 = inguarddist
+trigger2 = enemynear, numproj || enemynear, numhelper
+
+;MELEE
+[State -1, clk]
+type = ChangeState
+value = ifelse(p2dist X > 35 || random > 200, 430, 400)
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = p2statetype != L
+triggerall = p2statetype != A
+triggerall = !(enemynear, hitdefattr = SC, AT)
+triggerall = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+triggerall = enemynear, numproj = 0
+triggerall = p2dist X > 10
+triggerall = p2dist X < 60
+triggerall = random > 200
+triggerall = !(enemynear, hitdefattr = SCA, HA, HT, HP)
+triggerall = (p2stateno != 131 && p2stateno != 141 && p2stateno != 151)
+trigger1 = (!(p2stateno = [120, 159]) && enemynear, vel X = 0) || (enemynear, moveguarded = 0)
+trigger2 = (p2statetype = S && enemynear, time > 15 && random % 5 = 0) || ((enemynear, animtime = [-6, -4]) && !inguarddist)
+
+[State -1, clk]
+type = ChangeState
+value = 430
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = p2statetype != L
+triggerall = p2statetype != A
+triggerall = !(enemynear, hitdefattr = SC, AT)
+triggerall = enemynear, numproj = 0
+triggerall = p2dist X > 10
+triggerall = p2dist X < 60
+triggerall = random > 200
+triggerall = !(enemynear, hitdefattr = SCA, HA, HT, HP)
+triggerall = (p2stateno != 131 && p2stateno != 141 && p2stateno != 151)
+trigger1 = StateNo = 430
+trigger1 = movecontact
+
+[State -1, sj2]
+Type = ChangeState
+value = 43
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = enemynear,statetype != A
+triggerall = enemynear,statetype != L
+triggerall = p2dist X >= 60
+trigger1 = stateno = 430
+trigger1 = animtime = 0
+trigger1 = movecontact || p2dist X < 70
+trigger1 = ifelse(moveguarded, random > 100, random > 250)
+trigger1 = random % 4 > 0
+trigger2 = ctrl || (stateno = [20,29]) || (Stateno = [99, 101])
+trigger2 = p2statetype = C
+trigger2 = p2dist X < 75
+
+[State -1, air slash]
+Type = ChangeState
+value = 1500
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+triggerall = statetype != A
+triggerall = enemynear,statetype != A
+triggerall = enemynear,statetype != L
+trigger1 = ctrl || (stateno = [20,29]) || (stateno = [99,101])
+trigger1 = p2dist X < 130 - enemynear, const(size.attack.dist)* 0.2
+trigger1 = p2dist X > 122 - enemynear, const(size.attack.dist)* 0.2
+trigger1 = (enemynear, animtime < -25 && !inguarddist && enemynear, vel X < 2)
+
+[State -1, jetpack]
+type = ChangeState
+value = 1300
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+TriggerAll = Var(24) = 0
+TriggerAll = StateNo != [1300,1370]
+TriggerAll = StateNo != [2300,2360]
+Triggerall = (Ctrl && StateType = A) || (Var(10)/10%10 = 1)
+trigger1 = ifelse(enemynear, statetype = C, random % 15 = 0, random > 100)
+Trigger1 = p2dist x > 15+vel x
+Trigger1 = pos y +(vel y*12)+(const(movement.yaccel)*12) > -enemynear, const(size.height)+enemynear, const(size.height)*0.27 +random % 5 + (enemynear, statetype = C)*enemynear, const(size.height) * 0.39
+trigger1 = p2dist X < 68+abs(enemynear,animtime / 2)*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+
+[State -1, jk]
+type = ChangeState
+value = 630
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+TriggerAll = Var(24) = 0
+Triggerall = (Ctrl && StateType = A) || (Var(10)/10%10 = 1)
+TriggerAll = p2dist x < 79+12*vel x + random % 8
+TriggerAll = p2dist x > -25+12*vel x
+Triggerall = pos y +(vel y*12)+(const(movement.yaccel)*12) > -enemynear, const(size.height)+enemynear, const(size.height)*0.27 +random % 5 + (enemynear, statetype = C)*enemynear, const(size.height) * 0.39
+trigger1 = p2bodydist X <= 24
+trigger1 = p2movetype != A
+
+[State -1, air slash]
+type = ChangeState
+value = 1500
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+TriggerAll = Var(24) = 0
+TriggerAll = StateType != A
+Triggerall = Ctrl || Var(10)%10 = [1,2]
+triggerall = enemynear, stateno != [40, 49]
+triggerall = enemynear, movetype = A
+triggerall = enemynear, statetype = S
+triggerall = enemynear, animtime < -30
+trigger1 = p2bodydist X < 65 + abs(enemynear,animtime / 2)*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = p2bodydist X > 50 + abs(enemynear,animtime / 2)*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = p2bodydist X > enemyNear, vel x*ifelse(enemynear, p2dist x < 0, -1, 1)
+
+[State -1, lightning net]
+type = ChangeState
+value = 1400
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+trigger1 = (StateNo = [1300, 1360]) || (StateNo = [2300,2360])
+trigger1 = p2dist X < 61+34*vel x + random % 8 + 8*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = enemynear, movetype = A || inguarddist || enemynear, inguarddist || enemynear, animtime < -15 || enemynear, time > 10 || p2bodydist X < 14
+
+[State -1, rising punch]
+Type = ChangeState
+Value = 1100
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+TriggerAll = Var(24) = 0
+TriggerAll = StateType != A
+Triggerall = Ctrl || Var(10)%10 = [1,2]
+trigger1 = p2dist X < 58+10*((enemyNear, vel x)*ifelse(enemynear, p2dist x < 0, -1, 1))
+trigger1 = ifelse(enemynear, movetype = A || inguarddist, random > 50, random > 240)
+trigger1 = enemynear, statetype = A
+trigger1 = enemynear, pos Y < -60-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+trigger1 = enemynear, pos Y > -100-((EnemyNear, vel y)+(enemyNear, const(movement.yaccel)*10))
+trigger1 = (enemynear, vel X = 0 && enemynear, vel Y > 0) || enemynear, vel X < 0
+
+;RANGE
+
+[State -1, counter wire]
+Type = ChangeState
+value = 1000
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+TriggerAll = Var(24) = 0
+TriggerAll = StateType != A
+Triggerall = Ctrl || Var(10)%10 = [1,2]
+trigger1 = p2dist X > 178
+trigger1 = enemynear, numproj < 2
+trigger1 = enemynear, time > 14
+
+[State -1, sphere punch]
+Type = ChangeState
+Value = 1200 
+triggerall = 000 + 1
+triggerall = var(59) = 1 && alive && roundstate = 2
+TriggerAll = Var(24) = 0
+TriggerAll = StateType != A
+Triggerall = Ctrl || Var(10)%10 = [1,2]
+triggerall = p2statetype != A
+triggerall = p2statetype != L
+trigger1 = enemynear, movetype = H
+trigger1 = !inguarddist
+trigger1 = p2dist X > 150
+trigger1 = p2dist X < 170
+  
 ;SENTI
 ;==============================================================================;
 ; ’´•KŽE‹Z
@@ -388,7 +560,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Choudokyu Status Up]
   Type       = ChangeState
-  Value      = 3010 ;SENTI: power up
+  Value      = 3010 ;SENTI: power up var(22) var(10)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236236AB"
@@ -476,7 +648,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : ]
   Type       = ChangeState
-  Value      = 1650 ;SENTI: hug wrestler
+  Value      = 1650 ;SENTI: hug wrestler var(18)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "631246X" || Command = "631246Y"
@@ -532,7 +704,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Sengoku Denshou]
   Type       = ChangeState
-  Value      = 1550 ;SENTI: air slash
+  Value      = 1550 ;SENTI: air slash var(16) reversal SC, AA
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "63124A" || Command = "63124B"
@@ -547,7 +719,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Sengoku Denshou]
   Type       = ChangeState
-  Value      = 1500 ;SENTI: air slash
+  Value      = 1500 ;SENTI: air slash reversal SC, AA
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "63124A" || Command = "63124B"
@@ -559,7 +731,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw]
   Type       = ChangeState
-  Value      = 2150 ;SENTI: rising punch
+  Value      = 2150 ;SENTI: rising punch var(15)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623XY"
@@ -575,7 +747,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw EX]
   Type       = ChangeState
-  Value      = 2100 ;SENTI:rising punch
+  Value      = 2100 ;SENTI: rising punch
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623XY"
@@ -590,7 +762,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw]
   Type       = ChangeState
-  Value      = 1150 ;SENTI: rising punch
+  Value      = 1150 ;SENTI: rising punch var(15)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623X" || Command = "623Y"
@@ -605,7 +777,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Submarine Screw]
   Type       = ChangeState
-  Value      = 1100 ;SENTI: rising punch
+  Value      = 1100 ;SENTI: rising punch hitby AP override
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "623X" || Command = "623Y"
@@ -617,7 +789,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster EX]
   Type       = ChangeState
-  Value      = 2050 ;SENTI: counter wire
+  Value      = 2050 ;SENTI: counter wire var(14)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236XY"
@@ -632,7 +804,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster EX]
   Type       = ChangeState
-  Value      = 2000 ;SENTI:counter wire
+  Value      = 2000 ;SENTI: counter wire
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236XY"
@@ -646,7 +818,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster]
   Type       = ChangeState
-  Value      = 1050 ;SENTI:counter wire
+  Value      = 1050 ;SENTI: counter wire var(14) triple
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236X" || Command = "236Y"
@@ -660,7 +832,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Beast Buster]
   Type       = ChangeState
-  Value      = 1000 ;SENTI:counter wire
+  Value      = 1000 ;SENTI: counter wire, CLNS hitby AP, override, x light, y strong
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236X" || Command = "236Y"
@@ -672,7 +844,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Lightning Fist]
   Type       = ChangeState
-  Value      = 2450 ;SENTI: lightning net
+  Value      = 2450 ;SENTI: lightning net var(17)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214XY"
@@ -701,7 +873,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Lightning Fist]
   Type       = ChangeState
-  Value      = 1450 ;SENTI: lightning net
+  Value      = 1450 ;SENTI: lightning net var(17)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214X" || Command = "214Y"
@@ -728,7 +900,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Bakuretsu ken]
   Type       = ChangeState
-  Value      = 2250 ;SENTI: sphere punch
+  Value      = 2250 ;SENTI: sphere punch var(14) nothitby
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214XY"
@@ -760,7 +932,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Bakuretsu ken]
   Type       = ChangeState
-  Value      = 1250 ;SENTI: sphere punch
+  Value      = 1250 ;SENTI: sphere punch var(14)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214X" || Command = "214Y"
@@ -802,7 +974,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 1320 ;SENTI: jetpack
+  Value      = 1320 ;SENTI: jetpack var(16)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "214A" || Command = "214B"
@@ -847,7 +1019,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Riding Hero]
   Type       = ChangeState
-  Value      = 1370 ;SENTI: jetpack
+  Value      = 1370 ;SENTI: jetpack var(16)
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "236A" || Command = "236B"
@@ -877,7 +1049,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Memory Card Slash]
   Type       = ChangeState
-  Value      = 2700 ;SENTI: power up
+  Value      = 2700 ;SENTI: power up nullified
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "22XY" || Command = "22AB"
@@ -892,7 +1064,7 @@ trigger1 = p2dist X < 130
 ;--------------------------------------------------------------------;
 [State -1     : Memory Card Slash]
   Type       = ChangeState
-  Value      = 1700 ;SENTI: power up
+  Value      = 1700 ;SENTI: power up var(14)(15)(16)(17)(18) = 420
   triggerall = var(59) != 1
   TriggerAll = Var(24) = 0
   TriggerAll = Command = "MemoryCardSlash"

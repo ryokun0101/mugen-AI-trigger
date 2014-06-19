@@ -361,6 +361,13 @@
   SprPriority = 1
 
 ;--------------------------------------[ Variable ]
+[State 40, 1]
+type = ChangeState
+triggerall = !time
+trigger1 = var(59) > 0
+value = 0
+ctrl = 1
+
 [State 40]
   Type     = VarSet
   Trigger1 = Time = 0
@@ -440,7 +447,28 @@
   Trigger1 = AnimTime = 0
   Value    = 50
   Ctrl     = 1
+;SENTI
+[Statedef 43]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+velset = 0,0
 
+[State 42, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+x = 0.5
+y = -4
+
+[State 42, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+;SENTI
 ;------------------------------------------------------------------------------;
 ; 空中ジャンプ開始動作
 ;------------------------------------------------------------------------------;
@@ -985,13 +1013,21 @@
 
 [State 120 : Hi to Lo]
   Type      = StateTypeSet
-  Trigger1  = StateType = S && Command = "holddown"
+triggerall = statetype = S
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   StateType = C
   Physics   = C
 
 [State 120 : Lo to Hi]
   Type      = StateTypeSet
-  Trigger1  = StateType = C && Command != "holddown"
+triggerall = statetype = C
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A 
   StateType = S
   Physics   = S
 
@@ -1049,8 +1085,12 @@
 
 [State 120 : Stop Guarding]
   Type     = ChangeState
-  Trigger1 = Command != "holdback"
-  Trigger2 = !InGuardDist
+trigger1 = var(59)<1
+trigger1 = command != "holdback"
+trigger2 = !inguarddist
+trigger2 = enemynear, animtime < -10
+trigger3= var(59)>0 
+trigger3= enemynear,hitdefattr=SCA,AT
   Value    = 140
 
 ;------------------------------------------------------------------------------;
@@ -1088,13 +1128,20 @@
 ;--------------------------------------[ ChangeState ]
 [State 130, Hi to Lo]
   Type     = ChangeState
-  Trigger1 = Command = "holddown"
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   Value    = 131
 
 [State 130, Stop Guarding]
   Type     = ChangeState
-  Trigger1 = Command != "holdback"
-  Trigger2 = !InGuardDist
+trigger1 = var(59)<1
+trigger1 = command != "holdback"
+trigger2 = !inguarddist
+trigger2 = enemynear, animtime < -10
+trigger3= var(59)>0 
+trigger3= enemynear,hitdefattr=SCA,AT
   Value    = 140
 
 ;------------------------------------------------------------------------------;
@@ -1132,13 +1179,20 @@
 ;--------------------------------------[ ChangeState ]
 [State 131, Lo to Hi]
   Type     = ChangeState
-  Trigger1 = Command != "holddown"
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A
   Value    = 130
 
 [State 131, Stop Guarding]
   Type     = ChangeState
-  Trigger1 = Command != "holdback"
-  Trigger2 = !InGuardDist
+trigger1 = var(59)<1
+trigger1 = command != "holdback"
+trigger2 = !inguarddist
+trigger2 = enemynear, animtime < -10
+trigger3= var(59)>0 
+trigger3= enemynear,hitdefattr=SCA,AT
   Value    = 140
 
 ;------------------------------------------------------------------------------;
@@ -1197,9 +1251,12 @@
 ;--------------------------------------[ ChangeState ]
 [State 132, 6]
   Type     = ChangeState
-  Trigger1 = sysvar(0)
-  Trigger1 = Command = "holdback"
-  Trigger1 = InGuardDist
+triggerall = sysvar(0)
+trigger1 = var(59)<1
+trigger1 = command = "holdback" 
+trigger1 = inguarddist
+trigger2 = var(59)>0
+trigger2 = inguarddist
   Value    = 130
 
 [State 132, 7]
@@ -1209,8 +1266,10 @@
 
 [State 132, Stop Guarding]
   Type     = ChangeState
-  Trigger1 = Command != "holdback"
-  Trigger2 = !InGuardDist
+trigger1 = var(59)<1
+trigger1 = command != "holdback"
+trigger2 = !inguarddist
+trigger2 = enemynear, animtime < -10
   Value    = 140
 
 ;------------------------------------------------------------------------------;
@@ -1245,13 +1304,21 @@
 
 [State 140, Hi to Lo]
   Type      = StateTypeSet
-  Trigger1  = StateType = S && Command = "holddown"
+triggerall = statetype=S
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   StateType = C
   Physics   = C
 
 [State 140, Lo to Hi]
   Type      = StateTypeSet
-  Trigger1  = StateType = C && Command != "holddown"
+triggerall = statetype=C
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A
   StateType = S
   Physics   = S
 
@@ -1324,13 +1391,21 @@
 ;--------------------------------------[ Others ]
 [State 150    : Hi to Lo]
   Type      = StateTypeSet
-  Trigger1  = StateType = S && Command = "holddown"
+triggerall = statetype=S
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   StateType = C
   Physics   = C
 
 [State 150    : Lo to Hi]
   Type      = StateTypeSet
-  Trigger1  = StateType = C && Command != "holddown"
+triggerall = statetype=C
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A
   StateType = S
   Physics   = S
 
@@ -1382,13 +1457,21 @@
 
 [State 151    : Hi to Lo]
   Type      = StateTypeSet
-  Trigger1  = StateType = S && Command = "holddown"
+triggerall = statetype = S 
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   StateType = C
   Physics   = C
 
 [State 151    : Lo to Hi]
   Type      = StateTypeSet
-  Trigger1  = StateType = C && Command != "holddown"
+triggerall = statetype = C
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A
   StateType = S
   Physics   = S
 
@@ -1444,13 +1527,21 @@
 ;--------------------------------------[ Others ]
 [State 152    : Hi to Lo]
   Type      = StateTypeSet
-  Trigger1  = StateType = S && Command = "holddown"
+triggerall = statetype = S 
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   StateType = C
   Physics   = C
 
 [State 152    : Lo to Hi]
   Type      = StateTypeSet
-  Trigger1  = StateType = C && Command != "holddown"
+triggerall = statetype = C 
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A
   StateType = S
   Physics   = S
 
@@ -1502,13 +1593,21 @@
 
 [State 153    :  Hi to Lo]
   Type      = StateTypeSet
-  Trigger1  = StateType = S && Command = "holddown"
+triggerall = statetype = S 
+trigger1 = var(59)<1
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = C
   StateType = C
   Physics   = C
 
 [State 153    :  Lo to Hi]
   Type      = StateTypeSet
-  Trigger1  = StateType = C && Command != "holddown"
+triggerall = statetype =c  
+trigger1 = var(59)<1
+trigger1 = command != "holddown"
+trigger2 = var(59)>0
+trigger2 = EnemyNear,StateType = A
   StateType = S
   Physics   = S
 
@@ -1657,6 +1756,13 @@
   Trigger1 = Command = "holdback"
   Trigger1 = InGuardDist
   Value    = 130
+  
+[State 155, 6]
+type = ChangeState
+triggerall = sysvar(0)
+trigger1 =  var(59)>0
+trigger1 = inguarddist
+value = 130
 
 [State 155]
   Type     = ChangeState
