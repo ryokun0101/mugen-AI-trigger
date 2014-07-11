@@ -1531,8 +1531,11 @@
 
 [State 3320]
   Type     = VarSet
-  Trigger1 = AnimElem = 4, >= 0 && AnimElem = 32, < 0
+  Triggerall = AnimElem = 4, >= 0 && AnimElem = 32, < 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "2141236X" || Command = "2141236Y"
+  trigger2 = var(59) > 0
+  trigger2 = animelem = 32, < 0
   V        = 7
   Value    = 1
   IgnoreHitPause = 1

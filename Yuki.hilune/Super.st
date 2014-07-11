@@ -29,6 +29,7 @@
 [State 1000]
   Type     = VarSet
   Trigger1 = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "y"
   V        = 7
   Value    = 1
@@ -36,8 +37,10 @@
 
 [State 1000]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "x"
+  trigger2 = var(59) > 0
   V        = 7
   Value    = 0
   IgnoreHitPause = 1
@@ -675,16 +678,24 @@
 
 [State 1100]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "y"
+  trigger2 = var(59) > 0
+  trigger2 = p2bodydist X < 40
+  trigger2 = enemynear, pos Y > -75
   V        = 7
   Value    = 1
   IgnoreHitPause = 1
 
 [State 1100]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "x"
+  trigger2 = var(59) > 0
+  trigger2 = p2bodydist X >= 40
+  trigger2 = enemynear, pos Y <= -75
   V        = 7
   Value    = 0
   IgnoreHitPause = 1
@@ -1864,16 +1875,22 @@
 ;--------------------------------------[ Variable ]
 [State 1300]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "b"
+  trigger2 = var(59) > 0
+  trigger2 = p2dist X > 70
   V        = 7
   Value    = 1
   IgnoreHitPause = 1
 
 [State 1300]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "a"
+  trigger2 = var(59) > 0
+  trigger2 = p2dist X <= 70
   V        = 7
   Value    = 0
   IgnoreHitPause = 1
@@ -2413,16 +2430,20 @@
 ;--------------------------------------[ Variable ]
 [State 1400]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "y"
+  ;trigger2 = var(59) > 0
   V        = 7
   Value    = 1
   IgnoreHitPause = 1
 
 [State 1400]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "x"
+  trigger2 = var(59) > 0
   V        = 7
   Value    = 0
   IgnoreHitPause = 1
@@ -3154,8 +3175,10 @@
 ;--------------------------------------[ Variable ]
 [State 1500]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "b"
+  trigger2 = var(59) > 0  
   V        = 7
   Value    = 1
   IgnoreHitPause = 1
@@ -3163,7 +3186,8 @@
 
 [State 1500]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) < 1
   Trigger1 = Command = "a"
   V        = 7
   Value    = 0
@@ -3828,16 +3852,22 @@
 
 [State 1600   : コマンド判定, Set]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) != 1
   Trigger1 = Command = "y"
+  trigger2 = var(59) = 1
+  trigger2 = random % 2 = 0
   V        = 7
   Value    = 1
   IgnoreHitPause = 1
 
 [State 1600   : コマンド判定, Set]
   Type     = VarSet
-  Trigger1 = Time = 0
+  Triggerall = Time = 0
+  trigger1 = var(59) != 1
   Trigger1 = Command = "x"
+  trigger2 = var(59) = 1
+  trigger2 = random % 2 = 0
   V        = 7
   Value    = 0
   IgnoreHitPause = 1
@@ -4634,7 +4664,10 @@
 [State 1700]
   Type       = VarSet
   TriggerAll = Time = 0
+  trigger1 = var(59) < 1
   Trigger1   = Command = "y"
+  trigger2 = var(59) > 0
+  trigger2 = var(18) > 0 && ((Var(17) > 0 && var(14) > 0) || random > 900)
   V          = 7
   Value      = 1
   IgnoreHitPause = 1
@@ -4642,7 +4675,10 @@
 [State 1700]
   Type       = VarSet
   TriggerAll = Time = 0
+  trigger1 = var(59) < 1
   Trigger1   = Command = "x"
+   trigger2 = var(59) > 0
+  trigger2 = var(14) <= 0 && (var(17) > 0 || random > 800)
   V          = 7
   Value      = 0
   IgnoreHitPause = 1
@@ -4650,7 +4686,10 @@
 [State 1700]
   Type       = VarSet
   TriggerAll = Time = 0
+  trigger1 = var(59) < 1
   Trigger1   = Command = "b"
+  trigger2 = var(59) > 0
+  trigger2 = var(17) <= 0
   V          = 7
   Value      = 3
   IgnoreHitPause = 1
@@ -4658,7 +4697,10 @@
 [State 1700]
   Type       = VarSet
   TriggerAll = Time = 0
+  trigger1 = var(59) < 1
   Trigger1   = Command = "a"
+  trigger2 = var(59) > 0
+  trigger2 = var(18) > 0 && ((Var(17) > 0 && var(14) > 0) || random > 700)
   V          = 7
   Value      = 2
   IgnoreHitPause = 1
@@ -4666,7 +4708,10 @@
 [State 1700]
   Type       = VarSet
   TriggerAll = Time = 0
+  trigger1 = var(59) < 1
   Trigger1   = Command = "start"
+  trigger2 = var(59) > 0
+  trigger2 = var(18) <= 0 && ((Var(17) > 0 && var(14) > 0) || random > 700)
   V          = 7
   Value      = 4
   IgnoreHitPause = 1

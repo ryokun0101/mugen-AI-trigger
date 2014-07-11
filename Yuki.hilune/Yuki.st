@@ -728,7 +728,10 @@ ctrl = 1
 
 [State 100]
   Type     = ChangeState
+  trigger1 = var(59) != 1
   Trigger1 = Command != "holdfwd"
+  trigger2 = var(59) = 1
+  trigger2 = p2movetype = A || enemynear, numproj || inguarddist || p2dist X < 90
   Value    = 0
   Ctrl     = 1
 
@@ -1027,7 +1030,7 @@ triggerall = statetype = C
 trigger1 = var(59)<1
 trigger1 = command != "holddown"
 trigger2 = var(59)>0
-trigger2 = EnemyNear,StateType = A 
+trigger2 = EnemyNear,StateType = A && enemynear, pos Y < -25
   StateType = S
   Physics   = S
 
@@ -1087,8 +1090,9 @@ trigger2 = EnemyNear,StateType = A
   Type     = ChangeState
 trigger1 = var(59)<1
 trigger1 = command != "holdback"
+trigger2 = var(59) > 0
 trigger2 = !inguarddist
-trigger2 = enemynear, animtime < -10
+trigger2 = enemynear, animtime < -8 && enemynear, numproj = 0
 trigger3= var(59)>0 
 trigger3= enemynear,hitdefattr=SCA,AT
   Value    = 140
@@ -1139,7 +1143,7 @@ trigger2 = EnemyNear,StateType = C
 trigger1 = var(59)<1
 trigger1 = command != "holdback"
 trigger2 = !inguarddist
-trigger2 = enemynear, animtime < -10
+trigger2 = enemynear, animtime < -8 && enemynear, numproj = 0
 trigger3= var(59)>0 
 trigger3= enemynear,hitdefattr=SCA,AT
   Value    = 140
@@ -1182,15 +1186,16 @@ trigger3= enemynear,hitdefattr=SCA,AT
 trigger1 = var(59)<1
 trigger1 = command != "holddown"
 trigger2 = var(59)>0
-trigger2 = EnemyNear,StateType = A
+trigger2 = EnemyNear,StateType = A && enemynear, pos Y < -25
   Value    = 130
 
 [State 131, Stop Guarding]
   Type     = ChangeState
 trigger1 = var(59)<1
 trigger1 = command != "holdback"
+trigger2 = var(59) > 0
 trigger2 = !inguarddist
-trigger2 = enemynear, animtime < -10
+trigger2 = enemynear, animtime < -8 && enemynear, numproj = 0
 trigger3= var(59)>0 
 trigger3= enemynear,hitdefattr=SCA,AT
   Value    = 140
@@ -1268,8 +1273,9 @@ trigger2 = inguarddist
   Type     = ChangeState
 trigger1 = var(59)<1
 trigger1 = command != "holdback"
+trigger2 = var(59) > 0
 trigger2 = !inguarddist
-trigger2 = enemynear, animtime < -10
+trigger2 = enemynear, animtime < -8 && enemynear, numproj = 0
   Value    = 140
 
 ;------------------------------------------------------------------------------;
@@ -1318,7 +1324,7 @@ triggerall = statetype=C
 trigger1 = var(59)<1
 trigger1 = command != "holddown"
 trigger2 = var(59)>0
-trigger2 = EnemyNear,StateType = A
+trigger2 = EnemyNear,StateType = A && enemynear, pos Y < -25
   StateType = S
   Physics   = S
 
@@ -1405,7 +1411,7 @@ triggerall = statetype=C
 trigger1 = var(59)<1
 trigger1 = command != "holddown"
 trigger2 = var(59)>0
-trigger2 = EnemyNear,StateType = A
+trigger2 = EnemyNear,StateType = A && enemynear, pos Y < -25
   StateType = S
   Physics   = S
 
